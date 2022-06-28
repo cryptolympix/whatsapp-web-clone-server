@@ -1,27 +1,61 @@
 import React from 'react';
 import './styles.scss';
 
-type FormLoginProps = {};
+type LoginState = {
+  username: string;
+  phone: string;
+  password: string;
+};
+
+type FormLoginProps = {
+  onLogin: (state: LoginState) => void;
+};
 
 const FormLogin = (props: FormLoginProps): JSX.Element => {
+  const [state, setState] = React.useState<LoginState>({
+    username: '',
+    phone: '',
+    password: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const inputValue = e.target.value;
+    const inputName = e.target.name;
+    setState((prevState) => ({
+      ...prevState,
+      [inputName]: inputValue,
+    }));
+  };
+
   return (
     <div className="formLogin">
       <input
         className="formLogin__input"
         name="username"
         placeholder="Username"
+        value={state.username}
+        onChange={handleChange}
       />
       <input
         className="formLogin__input"
         name="phone"
         placeholder="Phone Number"
+        value={state.phone}
+        onChange={handleChange}
       />
       <input
         className="formLogin__input"
         name="password"
         placeholder="Password"
+        value={state.password}
+        onChange={handleChange}
       />
-      <button className="formLogin__button">Connection</button>
+      <button
+        className="formLogin__button"
+        onClick={() => props.onLogin(state)}
+      >
+        Connection
+      </button>
     </div>
   );
 };

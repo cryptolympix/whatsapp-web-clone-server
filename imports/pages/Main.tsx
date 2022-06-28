@@ -4,7 +4,7 @@ import './Main.scss';
 type MainProps = {};
 
 const Main = (props: MainProps): JSX.Element => {
-  return <div>Main</div>;
+  return <div className="main">Main</div>;
 };
 
 export default Main;
