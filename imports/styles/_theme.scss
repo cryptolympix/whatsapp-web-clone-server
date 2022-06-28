@@ -1,0 +1,134 @@
+$themes: (
+  'dark': (
+    // header
+    header-color-iconGrey: #929fa6,
+    header-color-background: #eee,
+    header-color-title: #000000,
+    header-color-subTitle: rgba(0, 0, 0, 0.6),
+    // left status
+    leftStatus-color-bgBlue: #9de1fe,
+    leftStatus-color-orange: #fed859,
+    leftStatus-color-textGrey: #2b3940,
+    leftStatus-color-spanGrey: #384c56,
+    // chat list
+    chatList-color-background: 'white',
+    // chat item
+    chatItem-color-bgGreen: #09d261,
+    chatItem-color-message: rgba(0, 0, 0, 0.6),
+    chatItem-color-badge: white,
+    chatItem-color-date: rgba(0, 0, 0, 0.4),
+    chatItem-color-backgroundActive: #f4f5f5,
+    chatItem-color-backgroundNormal: white,
+    chatItem-color-borderBottom: #f2f2f2,
+    // search bar
+    searchBar-color-background: #f8f8f8,
+    searchBar-color-labelBackground: white,
+    searchBar-color-icon: rgba(0, 0, 0, 0.3),
+    searchBar-color-input: #2a2a2a,
+    searchBar-color-placeholder: rgba(0, 0, 0, 0.3),
+    // footer
+    footer-color-background: #eee,
+    footer-color-labelBackground: white,
+    footer-color-input: #2a2a2a,
+    footer-color-placeholder: rgba(0, 0, 0, 0.3) white,
+    footer-color-icon: rgba(0, 0, 0, 0.27),
+    // message box
+    messageBox-color-dayWrapper: rgba(225, 245, 254, 0.92),
+    messageBox-color-daySpan: #60747d,
+    messageBox-color-message: #262626,
+    messageBox-color-messageBackground: #fff,
+    messageBox-color-detailsContainer: rgba(0, 0, 0, 0.45),
+    messageBox-color-messageMineBackground: #dcf8c6,
+    // login
+    login-color-darkGrey: #4b5961,
+    login-color-mediumGrey: #929fa6,
+    login-color-lightGrey: #e1e9eb,
+    login-color-bgGrey: #f7f9fa,
+    login-color-bgGreen: #09d261,
+    login-color-darkGreen: #1c8b82,
+    // left
+    left-color-borderRight: rgba(0, 0, 0, 0.2),
+    // avatar
+    avatar-color-background: white,
+    // spinner
+    spinner-color: #09d261,
+  ),
+  'light': (
+    // header
+    header-color-iconGrey: #929fa6,
+    header-color-background: #eee,
+    header-color-title: #000000,
+    header-color-subTitle: rgba(0, 0, 0, 0.6),
+    // left status
+    leftStatus-color-bgBlue: #9de1fe,
+    leftStatus-color-orange: #fed859,
+    leftStatus-color-textGrey: #2b3940,
+    leftStatus-color-spanGrey: #384c56,
+    // chat list
+    chatList-color-background: 'white',
+    // chat item
+    chatItem-color-bgGreen: #09d261,
+    chatItem-color-message: rgba(0, 0, 0, 0.6),
+    chatItem-color-badge: white,
+    chatItem-color-date: rgba(0, 0, 0, 0.4),
+    chatItem-color-backgroundActive: #f4f5f5,
+    chatItem-color-backgroundNormal: white,
+    chatItem-color-borderBottom: #f2f2f2,
+    // search bar
+    searchBar-color-background: #f8f8f8,
+    searchBar-color-labelBackground: white,
+    searchBar-color-icon: rgba(0, 0, 0, 0.3),
+    searchBar-color-input: #2a2a2a,
+    searchBar-color-placeholder: rgba(0, 0, 0, 0.3),
+    // footer
+    footer-color-background: #eee,
+    footer-color-labelBackground: white,
+    footer-color-input: #2a2a2a,
+    footer-color-placeholder: rgba(0, 0, 0, 0.3) white,
+    footer-color-icon: rgba(0, 0, 0, 0.27),
+    // message box
+    messageBox-color-dayWrapper: rgba(225, 245, 254, 0.92),
+    messageBox-color-daySpan: #60747d,
+    messageBox-color-message: #262626,
+    messageBox-color-messageBackground: #fff,
+    messageBox-color-detailsContainer: rgba(0, 0, 0, 0.45),
+    messageBox-color-messageMineBackground: #dcf8c6,
+    // login
+    login-color-darkGrey: #4b5961,
+    login-color-mediumGrey: #929fa6,
+    login-color-lightGrey: #e1e9eb,
+    login-color-bgGrey: #f7f9fa,
+    login-color-bgGreen: #09d261,
+    login-color-darkGreen: #1c8b82,
+    // left
+    left-color-borderRight: rgba(0, 0, 0, 0.2),
+    // avatar
+    avatar-color-background: white,
+    // spinner
+    spinner-color: #09d261,
+  ),
+);
+
+// https://www.zaratan.fr/next-refactor-theme-scss#refactor-avec-des-fonctions-scss
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}
