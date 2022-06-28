@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES2018",
     "module": "commonjs",
     "allowJs": true,
     "jsx": "preserve",
     "moduleResolution": "node",
-    "types": ["node"],
+    "types": ["node", "mocha"],
     "esModuleInterop": true
-  }
+  },
+  "include": ["imports/**/*", "client/**/*", "server/**/*"],
+  "exclude": ["node_modules/**/*", "build/**/*"]
 }
