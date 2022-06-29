@@ -2,8 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate } from 'react-router-dom';
 
-import FormLogin from '../components/FormLogin';
-import './Login.scss';
+import FormLogin from '../../molecules/FormLogin';
+import './styles.scss';
 
 type LoginProps = {};
 
@@ -41,8 +41,8 @@ const Login = (props: LoginProps): JSX.Element => {
           className="login__image"
           src="./images/connection.jpg"
         />
-        <h3 className="login__title">Keep your phone connected</h3>
-        <p className="login__p">Connect you to open the app</p>
+        <h3 className="login__title">Gardez votre téléphone connecté</h3>
+        <p className="login__p">Connectez vous afin de lancer une conversation !</p>
         <div className="login__divider"></div>
         <FormLogin onLogin={handleLogin} />
       </div>

@@ -8,7 +8,7 @@ This is a clone of the WhatsApp web application developed in [React](https://rea
 - 🔥 Typescript 4
 - 🔥 Meteor
 - ✅ SASS
-- ✅ React Router
+- ✅ React Router 6
 
 ## Demo
 

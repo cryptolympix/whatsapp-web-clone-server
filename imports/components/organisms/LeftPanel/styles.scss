@@ -1,0 +1,11 @@
+@import '../../../scss/theme';
+
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 100%;
+  @include themed {
+    border-right: 1px solid t('border-color');
+  }
+}

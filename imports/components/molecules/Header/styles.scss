@@ -1,0 +1,60 @@
+@import '../../../scss/theme';
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 3.2rem);
+  height: 6%;
+  padding: 1rem 1.6rem;
+  @include themed {
+    background: t('header-color-background');
+  }
+
+  &__icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 14rem;
+    height: 4rem;
+
+    &--small {
+      width: 4rem;
+    }
+  }
+
+  &__icon {
+    font-size: 2rem;
+    cursor: pointer;
+    @include themed {
+      color: t('header.color.icon');
+    }
+  }
+
+  &__message {
+    &__container {
+      text-align: left;
+      width: 58rem;
+      height: 4.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    &__title {
+      font-size: 1.6rem;
+      @include themed {
+        color: t('header-color-title');
+      }
+    }
+
+    &__subtitle {
+      font-size: 1.3rem;
+      @include themed {
+        color: t('header-color-subTitle');
+      }
+    }
+  }
+}

@@ -32,21 +32,21 @@ const FormLogin = (props: FormLoginProps): JSX.Element => {
       <input
         className="formLogin__input"
         name="username"
-        placeholder="Username"
+        placeholder="Nom d'utilisateur"
         value={state.username}
         onChange={handleChange}
       />
       <input
         className="formLogin__input"
         name="phone"
-        placeholder="Phone Number"
+        placeholder="Téléphone"
         value={state.phone}
         onChange={handleChange}
       />
       <input
         className="formLogin__input"
         name="password"
-        placeholder="Password"
+        placeholder="Mot de passe"
         value={state.password}
         onChange={handleChange}
       />

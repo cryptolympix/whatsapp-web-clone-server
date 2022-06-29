@@ -1,8 +1,28 @@
-@import './reset';
-@import './fonts';
-@import './theme';
+@import './scss/reset';
+@import './scss/fonts';
+@import './scss/theme';
 
 .app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
+  min-width: 600px;
+  overflow: hidden;
+
+  @include themed {
+    background: t('background-dark');
+  }
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 96%;
+    max-width: 1600px;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
