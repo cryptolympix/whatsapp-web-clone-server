@@ -2,6 +2,7 @@ import React from 'react';
 import { MdComputer } from 'react-icons/md';
 import { HiLockClosed } from 'react-icons/hi';
 
+import { ThemeContext } from '../../../contexts/ThemeContext';
 import './styles.scss';
 
 type RightPanelProps = {
@@ -18,19 +19,25 @@ const RightPanel = (props: RightPanelProps): JSX.Element => {
       ? 'Linux'
       : 'Unknown';
 
-  console.log(navigator.platform);
-
   return (
     <div className="rightPanel">
       {props.displayChat ? (
         <div></div>
       ) : (
         <div className="rightPanel__container">
-          <img
-            alt="background"
-            className="rightPanel__image"
-            src="./images/phone-laptop.png"
-          />
+          <ThemeContext.Consumer>
+            {({ isDark }) => (
+              <img
+                alt="background"
+                className="rightPanel__image"
+                src={
+                  isDark
+                    ? './images/phone-laptop-dark.png'
+                    : './images/phone-laptop.png'
+                }
+              />
+            )}
+          </ThemeContext.Consumer>
           <h3 className="rightPanel__title">WhatsApp Web</h3>
           <p className="rightPanel__p">
             Envoyez et recevez désormais des messages sans avoir à garder votre

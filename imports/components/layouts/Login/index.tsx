@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useNavigate } from 'react-router-dom';
 
+import { ThemeContext } from '../../../contexts/ThemeContext';
 import FormLogin from '../../molecules/FormLogin';
 import './styles.scss';
 
@@ -36,13 +37,23 @@ const Login = (props: LoginProps): JSX.Element => {
   return (
     <div className="login">
       <div className="login__container">
-        <img
-          alt="background"
-          className="login__image"
-          src="./images/connection.jpg"
-        />
+        <ThemeContext.Consumer>
+          {({ isDark }) => (
+            <img
+              alt="background"
+              className="login__image"
+              src={
+                isDark
+                  ? './images/connection-dark.jpg'
+                  : './images/connection.jpg'
+              }
+            />
+          )}
+        </ThemeContext.Consumer>
         <h3 className="login__title">Gardez votre téléphone connecté</h3>
-        <p className="login__p">Connectez vous afin de lancer une conversation !</p>
+        <p className="login__p">
+          Connectez vous afin de lancer une conversation !
+        </p>
         <div className="login__divider"></div>
         <FormLogin onLogin={handleLogin} />
       </div>

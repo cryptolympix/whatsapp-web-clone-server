@@ -11,11 +11,32 @@
   min-width: 600px;
   overflow: hidden;
 
-  @include themed {
-    background: t('background-dark');
+  &__background {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+
+    &--top {
+      top: 0;
+      height: 10vh;
+      @include themed {
+        background: t('background-colored');
+      }
+    }
+    &--bottom {
+      bottom: 0;
+      height: 90vh;
+      @include themed {
+        background: t('background-dark');
+      }
+    }
   }
 
   &__container {
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +44,8 @@
     height: 96%;
     max-width: 1600px;
     margin: auto;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    @include themed {
+      background: t('background-medium');
+    }
   }
 }

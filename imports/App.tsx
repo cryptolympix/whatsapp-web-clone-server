@@ -9,23 +9,29 @@ import { ThemeContextProvider, ThemeContext } from './contexts/ThemeContext';
 type AppProps = {};
 
 const App = (props: AppProps): JSX.Element => {
-  const { isDark } = React.useContext(ThemeContext);
-
   return (
     <ThemeContextProvider>
-      <div className={`${isDark ? 'theme--dark' : 'theme--light'}`}>
-        <div className="app">
-          <div className="app__container">
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/chats" element={<Main />} />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
-            </BrowserRouter>
+      <ThemeContext.Consumer>
+        {({ isDark }) => (
+          <div className={`${isDark ? 'theme--dark' : 'theme--light'}`}>
+            <div className="app">
+              <div className="app__background">
+                <div className="app__background app__background--top"></div>
+                <div className="app__background app__background--bottom"></div>
+              </div>
+              <div className="app__container">
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/chats" element={<Main />} />
+                    <Route path="*" element={<Navigate to="/" />} />
+                  </Routes>
+                </BrowserRouter>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
+      </ThemeContext.Consumer>
     </ThemeContextProvider>
   );
 };
