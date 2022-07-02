@@ -5,12 +5,10 @@ import Header from '../../molecules/LeftPanelHeader';
 
 type LeftPanelProps = {};
 
-const icons: string[] = ['circle-notch', 'comment-alt', 'ellipsis-v'];
-
 const LeftPanel = (props: LeftPanelProps): JSX.Element => {
   return (
     <div className="leftPanel">
-      <Header icons={icons} />
+      <Header />
     </div>
   );
 };

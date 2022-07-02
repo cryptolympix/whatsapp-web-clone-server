@@ -1,10 +1,10 @@
-export interface Profile {
+interface Profile {
   phone?: string;
   picture?: string;
   status?: string;
 }
 
-export interface User {
+interface User {
   _id: string;
   username: string;
   password: string;
