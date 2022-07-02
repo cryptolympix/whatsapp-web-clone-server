@@ -1,6 +1,17 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
+if (Meteor.isServer) {
+  Meteor.publish('user.all', () => {
+    return Meteor.users.find(
+      {},
+      {
+        fields: { service: 0 },
+      }
+    );
+  });
+}
+
 Meteor.methods({
   'user.login': ({ username, phone, password }) => {
     const user = Accounts.findUserByUsername(username);

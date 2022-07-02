@@ -1,20 +1,17 @@
 import React from 'react';
-import {
-  MdDataUsage,
-  MdAccountCircle,
-  MdMoreVert,
-  MdChat,
-} from 'react-icons/md';
+import { Meteor } from 'meteor/meteor';
+import { useNavigate } from 'react-router-dom';
+import { MdDataUsage, MdMoreVert, MdChat } from 'react-icons/md';
 
 import IconWithMenu from '../../atoms/IconWithMenu';
+import Avatar from '../../atoms/Avatar';
 import './styles.scss';
 
-type LeftPanelHeaderProps = {
-  icons: string[];
-  smallIcons?: boolean;
-};
+type LeftPanelHeaderProps = {};
 
 const LeftPanelHeader = (props: LeftPanelHeaderProps): JSX.Element => {
+  const navigate = useNavigate();
+
   const onClickAccount = () => {};
 
   const onClickData = () => {};
@@ -22,14 +19,27 @@ const LeftPanelHeader = (props: LeftPanelHeaderProps): JSX.Element => {
   const onClickChat = () => {};
 
   const handleSelectMenuItem = (index: number) => {
-    console.log(index);
+    switch (index) {
+      case 0:
+        return;
+      case 1:
+        return;
+      case 2:
+        return;
+      case 3:
+        Meteor.logout();
+        navigate('/');
+        console.log('Log out successfully');
+        return;
+    }
   };
 
   return (
     <div className="leftPanelHeader">
       <div className={'leftPanelHeader__icons'}>
-        <MdAccountCircle
-          className="leftPanelHeader__icon leftPanelHeader__icon--left"
+        <Avatar
+          avatarUrl={Meteor.user() ? Meteor.user().profile.picture : null}
+          iconClassName="leftPanelHeader__icon leftPanelHeader__icon--left"
           onClick={onClickAccount}
         />
       </div>

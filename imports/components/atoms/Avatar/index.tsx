@@ -1,0 +1,25 @@
+import React from 'react';
+import './styles.scss';
+import { MdAccountCircle } from 'react-icons/md';
+
+type AvatarProps = {
+  avatarUrl: string;
+  iconClassName?: string;
+  onClick?: () => void;
+};
+
+const Avatar = ({ avatarUrl, iconClassName, onClick }: AvatarProps) => {
+  return avatarUrl ? (
+    <img
+      src={avatarUrl}
+      className={['avatar', iconClassName].join(' ')}
+      onClick={onClick}
+    ></img>
+  ) : (
+    <div className={['avatar', iconClassName].join(' ')}>
+      <MdAccountCircle />
+    </div>
+  );
+};
+
+export default Avatar;

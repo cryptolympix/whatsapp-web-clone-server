@@ -1,8 +1,9 @@
 import React from 'react';
+import { IconType } from 'react-icons';
 import './styles.scss';
 
 type IconWithMenuProps = {
-  Icon: any;
+  Icon: IconType;
   iconClassName?: string;
   menuClassName?: string;
   menuItemClassName?: string;
