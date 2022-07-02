@@ -1,35 +1,38 @@
 @import '../../../scss/theme';
 
-.header {
+.leftPanelHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: calc(100% - 3.2rem);
+  width: 100%;
   height: 6%;
-  padding: 1rem 1.6rem;
-  @include themed {
-    background: t('header-color-background');
-  }
+  padding: 3rem 1rem;
+  box-sizing: border-box;
 
   &__icons {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    width: 14rem;
-    height: 4rem;
-
-    &--small {
-      width: 4rem;
-    }
+    user-select: none;
+    position: relative;
   }
 
   &__icon {
-    font-size: 2rem;
     cursor: pointer;
+
     @include themed {
-      color: t('header.color.icon');
+      color: t('text-color-medium');
+      background: t('background-medium');
+    }
+
+    &--left {
+      font-size: 4rem;
+    }
+
+    &--right {
+      font-size: 3rem;
+      margin-left: 3rem;
     }
   }
 
@@ -45,16 +48,10 @@
 
     &__title {
       font-size: 1.6rem;
-      @include themed {
-        color: t('header-color-title');
-      }
     }
 
     &__subtitle {
       font-size: 1.3rem;
-      @include themed {
-        color: t('header-color-subTitle');
-      }
     }
   }
 }

@@ -1,0 +1,69 @@
+@import '../../../scss/theme';
+
+.iconWithMenu {
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+
+  @include themed {
+    color: t('text-color-medium');
+    background: t('background-medium');
+  }
+
+  &--highlight {
+    border-radius: 50%;
+    @include themed {
+      background: t('background-light');
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    position: absolute;
+    list-style: none;
+    right: 0;
+    width: 200px;
+    height: 100px;
+    padding: 1.5rem 0;
+    box-sizing: content-box;
+    box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.34);
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+    transition: 0.3s ease transform;
+
+    @include themed {
+      background: t('background-light');
+    }
+
+    &--hide {
+      transform: scale(0);
+      -webkit-transform: scale(0);
+      -webkit-transform-origin: 100% 0%;
+      transform-origin: 100% 0%;
+      transition: 0.3s ease transform;
+    }
+  }
+
+  &__menuItem {
+    width: 100%;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+
+    @include themed {
+      color: t('text-color-dark');
+    }
+
+    &:hover {
+      @include themed {
+        background: t('background-medium');
+      }
+    }
+  }
+}

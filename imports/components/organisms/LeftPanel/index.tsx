@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
 
-import Header from '../../molecules/Header';
+import Header from '../../molecules/LeftPanelHeader';
 
 type LeftPanelProps = {};
 
