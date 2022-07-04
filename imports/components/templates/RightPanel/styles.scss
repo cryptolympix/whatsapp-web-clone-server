@@ -71,9 +71,7 @@
     text-decoration: none;
     font-size: 1.4rem;
     line-height: 2rem;
-    @include themed {
-      color: t('link-color');
-    }
+    color: $link-color;
   }
 
   &__divider {

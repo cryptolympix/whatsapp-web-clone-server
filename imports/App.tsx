@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.scss';
 
-import Login from './components/layouts/Login';
-import Main from './components/layouts/Main';
+import Login from './components/pages/Login';
+import Main from './components/pages/Main';
 import { ThemeContextProvider, ThemeContext } from './contexts/ThemeContext';
 
 type AppProps = {};

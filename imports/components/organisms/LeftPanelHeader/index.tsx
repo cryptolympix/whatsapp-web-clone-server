@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { useNavigate } from 'react-router-dom';
 import { MdDataUsage, MdMoreVert, MdChat } from 'react-icons/md';
 
-import IconWithMenu from '../../atoms/IconWithMenu';
+import IconWithMenu from '../../molecules/IconWithMenu';
 import Avatar from '../../atoms/Avatar';
 import './styles.scss';
 

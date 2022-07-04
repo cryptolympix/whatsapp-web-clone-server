@@ -1,30 +1,32 @@
+$primary-color: #00a884;
+$secondary-color: #00ee00;
+$link-color: #53bdeb;
+
 $themes: (
   'dark': (
-    primary-color: #00a884,
-    secondary-color: #00ee00,
     background-colored: #0a1014,
     background-dark: #0a1014,
     background-medium: #222f37,
     background-light: #2a3942,
     text-color-dark: #e8ecee,
+    background-notification: #182229,
+    background-notification-icon: $link-color,
     text-color-medium: #8696a0,
     text-color-light: #929fa6,
     border-color: #8696a0,
-    link-color: #53bdeb,
     icon-color: #54656f,
   ),
   'light': (
-    primary-color: #00a884,
-    secondary-color: #00ee00,
-    background-colored: #00a884,
+    background-colored: $primary-color,
     background-dark: #dfe0dd,
     background-medium: #f8f9fb,
     background-light: #ffffff,
+    background-notification: $link-color,
+    background-notification-icon: #ffffff,
     text-color-dark: #111b21,
     text-color-medium: #4b5961,
     text-color-light: #929fa6,
     border-color: #e1e9eb,
-    link-color: #53bdeb,
     icon-color: #54656f,
   ),
 );

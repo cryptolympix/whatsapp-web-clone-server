@@ -49,14 +49,11 @@
     outline: none;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.5);
-
-    @include themed {
-      background: t('primary-color');
-    }
+    background: $primary-color;
 
     &:hover {
       @include themed {
-        background: lighten(t('primary-color'), 10%);
+        background: lighten($primary-color, 10%);
       }
     }
   }

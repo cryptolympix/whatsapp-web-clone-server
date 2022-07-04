@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles.scss';
 
-import LeftPanel from '../../organisms/LeftPanel';
-import RightPanel from '../../organisms/RightPanel';
+import LeftPanel from '../../templates/LeftPanel';
+import RightPanel from '../../templates/RightPanel';
 
 type MainProps = {};
 
