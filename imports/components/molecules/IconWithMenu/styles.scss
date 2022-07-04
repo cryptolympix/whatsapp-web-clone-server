@@ -1,6 +1,7 @@
 @import '../../../scss/theme';
 
 .iconWithMenu {
+  position: relative;
   cursor: pointer;
   width: 3rem;
   height: 3rem;
@@ -27,6 +28,7 @@
     right: 0;
     width: 200px;
     height: 100px;
+    z-index: 20;
     padding: 1.5rem 0;
     box-sizing: content-box;
     box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.34);
@@ -34,7 +36,7 @@
     -webkit-transform: scale(1);
     -webkit-transform-origin: 100% 0%;
     transform-origin: 100% 0%;
-    transition: 0.3s ease transform;
+    transition: 0.2s ease transform;
 
     @include themed {
       background: t('background-light');
@@ -45,7 +47,7 @@
       -webkit-transform: scale(0);
       -webkit-transform-origin: 100% 0%;
       transform-origin: 100% 0%;
-      transition: 0.3s ease transform;
+      transition: 0.2s ease transform;
     }
   }
 

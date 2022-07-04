@@ -3,6 +3,7 @@ import './styles.scss';
 
 import Header from '../../organisms/LeftPanelHeader';
 import NotificationPanel from '../../organisms/NotificationPanel';
+import SearchBarPanel from '../../organisms/SearchBarPanel';
 
 type LeftPanelProps = {};
 
@@ -11,6 +12,7 @@ const LeftPanel = (props: LeftPanelProps): JSX.Element => {
     <div className="leftPanel">
       <Header />
       <NotificationPanel />
+      <SearchBarPanel />
     </div>
   );
 };

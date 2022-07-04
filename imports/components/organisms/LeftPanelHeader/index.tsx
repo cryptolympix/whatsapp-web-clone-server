@@ -43,7 +43,7 @@ const LeftPanelHeader = (props: LeftPanelHeaderProps): JSX.Element => {
           onClick={onClickAccount}
         />
       </div>
-      <div className="leftPanelHeader__icons leftPanelHeader__icon--right">
+      <div className="leftPanelHeader__icons">
         <MdDataUsage
           className="leftPanelHeader__icon leftPanelHeader__icon--right"
           onClick={onClickData}

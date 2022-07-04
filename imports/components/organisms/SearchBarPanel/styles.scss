@@ -1,0 +1,15 @@
+@import '../../../scss/theme';
+
+.searchBarPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: min-content;
+  padding: 0.8rem 1.2rem;
+  box-sizing: border-box;
+
+  @include themed {
+    background-color: t('background-chat');
+  }
+}

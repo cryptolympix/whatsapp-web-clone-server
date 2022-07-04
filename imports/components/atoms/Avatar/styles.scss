@@ -7,7 +7,6 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  box-shadow: 1px 1px 11px 1px rgba(0, 0, 0, 0.34);
 
   @include themed {
     background: t('background-dark');

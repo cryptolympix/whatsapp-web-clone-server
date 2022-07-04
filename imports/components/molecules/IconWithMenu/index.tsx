@@ -21,9 +21,24 @@ const IconWithMenu = ({
   onSelectMenuItem,
 }: IconWithMenuProps) => {
   const [menuHidden, setMenuHidden] = React.useState(true);
+  const iconRef = React.useRef<HTMLDivElement>();
+
+  const handleClickOutside = (event: React.MouseEvent) => {
+    if (!iconRef.current.contains(event.target as Node)) {
+      setMenuHidden(true);
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('click', handleClickOutside as any);
+    return () =>
+      document.removeEventListener('click', handleClickOutside as any);
+  }, []);
 
   return (
     <div
+      ref={iconRef}
+      onClick={handleClickOutside}
       className={[
         'iconWithMenu',
         iconClassName,
@@ -32,7 +47,10 @@ const IconWithMenu = ({
         .filter(Boolean)
         .join(' ')}
     >
-      <Icon onClick={() => setMenuHidden(!menuHidden)} />
+      <Icon
+        className="iconWithMenu__icon"
+        onClick={() => setMenuHidden(!menuHidden)}
+      />
       <ul
         className={[
           'iconWithMenu__menu',
