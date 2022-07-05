@@ -1,0 +1,100 @@
+@import '../../../scss/theme';
+
+.chatItem {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  width: 100%;
+  height: 7.5rem;
+  cursor: pointer;
+
+  @include themed {
+    background-color: t('background-chat');
+    &:hover {
+      background-color: t('background-chat-active');
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-right: 1.5rem;
+    border-bottom-width: 0.1rem;
+    border-bottom-style: solid;
+    @include themed {
+      border-bottom-color: t('border-color');
+    }
+  }
+
+  &__avatar {
+    margin: 0 1.5rem;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    line-height: normal;
+
+    &:first-child {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    text-align: left;
+    @include themed {
+      color: t('text-color-dark');
+    }
+  }
+
+  &__date {
+    font-size: 1.2rem;
+    text-align: right;
+    margin-top: 0.3rem;
+    margin-left: 0.6rem;
+    @include themed {
+      color: t('text-color-medium');
+    }
+    &--colored {
+      color: $primary-color !important;
+    }
+  }
+
+  &__message {
+    font-size: 1.4rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    @include themed {
+      color: t('text-color-medium');
+    }
+    &--new {
+      color: $primary-color !important;
+    }
+  }
+
+  &__badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    text-align: right;
+    margin-left: 2rem;
+    background: $primary-color;
+
+    @include themed {
+      color: t('background-chat');
+    }
+  }
+}

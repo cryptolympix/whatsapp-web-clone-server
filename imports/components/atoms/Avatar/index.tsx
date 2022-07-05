@@ -6,19 +6,20 @@ type AvatarProps = {
   avatarUrl: string;
   iconClassName?: string;
   onClick?: () => void;
+  large?: boolean;
 };
 
-const Avatar = ({ avatarUrl, iconClassName, onClick }: AvatarProps) => {
+const Avatar = ({ avatarUrl, iconClassName, onClick, large }: AvatarProps) => {
   return avatarUrl ? (
     <img
       src={avatarUrl}
-      className={['avatar', iconClassName].join(' ')}
+      className={['avatar', large && 'avatar--large', iconClassName].join(' ')}
       onClick={onClick}
     ></img>
   ) : (
-    <div className={['avatar', iconClassName].join(' ')}>
-      <MdAccountCircle />
-    </div>
+    <MdAccountCircle
+      className={['avatar', large && 'avatar--large', iconClassName].join(' ')}
+    />
   );
 };
 

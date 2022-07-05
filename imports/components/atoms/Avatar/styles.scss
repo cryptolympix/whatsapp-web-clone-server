@@ -11,4 +11,9 @@
   @include themed {
     background: t('background-dark');
   }
+
+  &--large {
+    width: 6rem;
+    height: 6rem;
+  }
 }

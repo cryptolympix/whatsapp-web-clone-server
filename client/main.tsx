@@ -6,7 +6,7 @@ import App from '../imports/App';
 
 Meteor.startup(() => {
   Tracker.autorun(() => {
-    const userReady: boolean = Meteor.subscribe('user.all').ready();
+    const userReady: boolean = Meteor.subscribe('users.all').ready();
     if (userReady) {
       render(<App />, document.getElementById('root'));
     } else {

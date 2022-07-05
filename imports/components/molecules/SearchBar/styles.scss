@@ -17,6 +17,7 @@
 
   &__input {
     width: calc(100% - 1.5rem);
+    text-overflow: ellipsis;
     text-align: left;
     outline: none;
     border: none;
