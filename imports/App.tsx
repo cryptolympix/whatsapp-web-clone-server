@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.scss';
 
-import Login from './components/pages/Login';
 import Main from './components/pages/Main';
 import { ThemeContextProvider, ThemeContext } from './contexts/ThemeContext';
 
@@ -22,8 +21,7 @@ const App = (props: AppProps): JSX.Element => {
               <div className="app__container">
                 <BrowserRouter>
                   <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/chats" element={<Main />} />
+                    <Route path="/" element={<Main />} />
                     <Route path="*" element={<Navigate to="/" />} />
                   </Routes>
                 </BrowserRouter>

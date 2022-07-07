@@ -58,8 +58,10 @@ const ChatItem = ({
         className="chatItem__container"
         onClick={() => onSelectChat(_id)}
       ></div>
-      <Avatar iconClassName="chatItem__avatar" avatarUrl={picture} large />
-      <div className="chatItem__content">
+      <div className="chatItem__content--left">
+        <Avatar iconClassName="chatItem__avatar" avatarUrl={picture} large />
+      </div>
+      <div className="chatItem__content--right">
         <div className="chatItem__row">
           <span className="chatItem__title">{title}</span>
           <div

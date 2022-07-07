@@ -42,7 +42,7 @@ Meteor.startup(() => {
     .sort(() => Math.random() - 0.5)
     .slice(-2);
 
-  let ids = [myUser._id, ...otherUsers.map((u) => u._id)];
+  let users = [myUser, ...otherUsers];
 
   // ================================================ //
   // ============= Create the chats ================= //
@@ -51,7 +51,7 @@ Meteor.startup(() => {
   const numberChats = chatCollection.find().count();
 
   if (numberChats === 0) {
-    createDummyChats(createDummyChatsData(ids));
+    createDummyChats(createDummyChatsData(users));
     console.log(`Dummy chats has been created`);
   } else {
     console.log(`There is ${numberChats} chats recorded`);
@@ -64,7 +64,7 @@ Meteor.startup(() => {
   const numberMessages = messageCollection.find().count();
 
   if (numberMessages === 0) {
-    createDummyMessages(createDummyMessagesData(ids));
+    createDummyMessages(createDummyMessagesData(users));
     console.log(`Dummy messages has been created`);
   } else {
     console.log(`There is ${numberMessages} messages recorded`);

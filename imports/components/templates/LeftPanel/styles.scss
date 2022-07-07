@@ -8,6 +8,6 @@
   min-width: 300px;
 
   @include themed {
-    border-right: 0.5px solid t('border-color');
+    border-right: 0.1px solid t('border-color');
   }
 }

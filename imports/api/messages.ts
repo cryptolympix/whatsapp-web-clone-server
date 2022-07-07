@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 
 export const messageCollection = new Mongo.Collection<Message>('messages');
 
-export const createDummyMessagesData = (userIds: string[]): Message[] => [
+export const createDummyMessagesData = (users: Meteor.User[]): Message[] => [
   {
     _id: 'msg-0',
     chatId: 'chat-0',
@@ -13,7 +13,7 @@ export const createDummyMessagesData = (userIds: string[]): Message[] => [
     createdAt: dayjs().toDate(),
     read: [],
     type: 'TEXT',
-    senderId: userIds[0],
+    senderId: users[0]._id,
   },
   {
     _id: 'msg-1',
@@ -22,7 +22,7 @@ export const createDummyMessagesData = (userIds: string[]): Message[] => [
     createdAt: dayjs().subtract(2, 'year').toDate(),
     read: [],
     type: 'TEXT',
-    senderId: userIds[2],
+    senderId: users[2]._id,
   },
   {
     _id: 'msg-2',
@@ -31,7 +31,7 @@ export const createDummyMessagesData = (userIds: string[]): Message[] => [
     createdAt: dayjs().subtract(1, 'year').toDate(),
     read: [],
     type: 'TEXT',
-    senderId: userIds[1],
+    senderId: users[1]._id,
   },
 ];
 

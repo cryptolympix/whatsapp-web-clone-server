@@ -18,13 +18,18 @@ const LeftPanel = ({
 }: LeftPanelProps): JSX.Element => {
   return (
     <div className="leftPanel">
-      <Header />
-      <NotificationPanel />
-      <SearchBarPanel />
+      <Header
+        onClickAvatar={() => null}
+        onClickChat={() => null}
+        onClickData={() => null}
+      />
+      <NotificationPanel onClick={() => null} />
+      <SearchBarPanel onChangeSearch={(search) => null} />
       <ChatList
         chats={findChats()}
         onSelectChat={onSelectChat}
         chatSelected={chatSelected}
+        onClickArchive={() => null}
       />
     </div>
   );

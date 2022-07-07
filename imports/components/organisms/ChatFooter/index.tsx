@@ -4,7 +4,7 @@ import './styles.scss';
 type ChatFooterProps = {};
 
 const ChatFooter = (props: ChatFooterProps) => {
-  return <div>ChatFooter</div>;
+  return <div className="chatFooter">ChatFooter</div>;
 };
 
 export default ChatFooter;

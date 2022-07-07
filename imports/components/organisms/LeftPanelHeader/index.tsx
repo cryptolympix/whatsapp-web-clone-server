@@ -7,16 +7,20 @@ import IconWithMenu from '../../molecules/IconWithMenu';
 import Avatar from '../../atoms/Avatar';
 import './styles.scss';
 
-type LeftPanelHeaderProps = {};
+type LeftPanelHeaderProps = {
+  className?: string;
+  onClickAvatar?: () => void;
+  onClickData?: () => void;
+  onClickChat?: () => void;
+};
 
-const LeftPanelHeader = (props: LeftPanelHeaderProps): JSX.Element => {
+const LeftPanelHeader = ({
+  className,
+  onClickAvatar,
+  onClickChat,
+  onClickData,
+}: LeftPanelHeaderProps): JSX.Element => {
   const navigate = useNavigate();
-
-  const onClickAccount = () => {};
-
-  const onClickData = () => {};
-
-  const onClickChat = () => {};
 
   const handleSelectMenuItem = (index: number) => {
     switch (index) {
@@ -27,7 +31,7 @@ const LeftPanelHeader = (props: LeftPanelHeaderProps): JSX.Element => {
       case 2:
         return;
       case 3:
-        Meteor.logout();
+        // Meteor.logout();
         navigate('/');
         console.log('Log out successfully');
         return;
@@ -35,12 +39,12 @@ const LeftPanelHeader = (props: LeftPanelHeaderProps): JSX.Element => {
   };
 
   return (
-    <div className="leftPanelHeader">
-      <div className={'leftPanelHeader__icons'}>
+    <div className={['leftPanelHeader', className].join(' ')}>
+      <div className="leftPanelHeader__icons">
         <Avatar
           avatarUrl={Meteor.user() ? Meteor.user().profile.picture : null}
           iconClassName="leftPanelHeader__icon leftPanelHeader__icon--left"
-          onClick={onClickAccount}
+          onClick={onClickAvatar}
         />
       </div>
       <div className="leftPanelHeader__icons">
