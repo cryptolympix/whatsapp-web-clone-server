@@ -9,7 +9,8 @@ type IconWithMenuProps = {
   menuItemClassName?: string;
   menuItems: string[];
   onSelectMenuItem?: (index: number) => void;
-  transformType?: 'right' | 'left';
+  menuPlacement?: 'right' | 'left';
+  useHoverColor?: boolean;
 };
 
 const IconWithMenu = ({
@@ -18,10 +19,15 @@ const IconWithMenu = ({
   menuClassName,
   menuItems,
   menuItemClassName,
+  useHoverColor,
   onSelectMenuItem,
 }: IconWithMenuProps) => {
   const [menuHidden, setMenuHidden] = React.useState(true);
   const iconRef = React.useRef<HTMLDivElement>();
+
+  const handleClickIcon = () => {
+    setMenuHidden(!menuHidden);
+  };
 
   const handleClickOutside = (event: React.MouseEvent) => {
     if (!iconRef.current.contains(event.target as Node)) {
@@ -35,6 +41,10 @@ const IconWithMenu = ({
       document.removeEventListener('click', handleClickOutside as any);
   }, []);
 
+  React.useEffect(() => {
+    setMenuHidden(true);
+  }, [iconClassName]);
+
   return (
     <div
       ref={iconRef}
@@ -42,15 +52,12 @@ const IconWithMenu = ({
       className={[
         'iconWithMenu',
         iconClassName,
-        !menuHidden && 'iconWithMenu--highlight',
+        useHoverColor && !menuHidden && 'iconWithMenu--highlight',
       ]
         .filter(Boolean)
         .join(' ')}
     >
-      <Icon
-        className="iconWithMenu__icon"
-        onClick={() => setMenuHidden(!menuHidden)}
-      />
+      <Icon className="iconWithMenu__icon" onClick={handleClickIcon} />
       <ul
         className={[
           'iconWithMenu__menu',

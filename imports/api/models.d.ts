@@ -26,5 +26,5 @@ interface Message {
   createdAt: Date;
   type: 'TEXT' | 'IMAGE';
   senderId: string;
-  read: boolean;
+  read: string[]; // id of user that read the message
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
+import { findChat } from '../../../api/helpers';
 
 import LeftPanel from '../../templates/LeftPanel';
 import RightPanel from '../../templates/RightPanel';
@@ -10,6 +11,8 @@ type MainProps = {};
 
 const Main = (props: MainProps): JSX.Element => {
   const [ready, setReady] = React.useState(false);
+  const [chatVisible, setChatVisible] = React.useState<boolean>(false);
+  const [chatSelected, setChatSelected] = React.useState<Chat | null>(null);
 
   const handles = [
     Meteor.subscribe('chats.mine'),
@@ -23,13 +26,23 @@ const Main = (props: MainProps): JSX.Element => {
     }
   });
 
+  const handleChatSelection = (chatId: string) => {
+    if (chatId) {
+      setChatVisible(true);
+      setChatSelected(findChat(chatId));
+    }
+  };
+
   if (!ready) {
     return null;
   } else {
     return (
       <div className="main">
-        <LeftPanel />
-        <RightPanel />
+        <LeftPanel
+          onSelectChat={handleChatSelection}
+          chatSelected={chatSelected}
+        />
+        <RightPanel displayChat={chatVisible} chatSelected={chatSelected} />
       </div>
     );
   }

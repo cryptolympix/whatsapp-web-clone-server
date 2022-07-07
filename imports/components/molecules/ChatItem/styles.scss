@@ -6,8 +6,9 @@
   flex-shrink: 0;
   align-items: center;
   width: 100%;
-  height: 7.5rem;
+  height: min-content;
   cursor: pointer;
+  position: relative;
 
   @include themed {
     background-color: t('background-chat');
@@ -16,13 +17,27 @@
     }
   }
 
+  &--active {
+    @include themed {
+      background-color: t('background-chat-active') !important;
+    }
+  }
+
+  &__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding-right: 1.5rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
     border-bottom-width: 0.1rem;
     border-bottom-style: solid;
     @include themed {
@@ -77,9 +92,6 @@
     @include themed {
       color: t('text-color-medium');
     }
-    &--new {
-      color: $primary-color !important;
-    }
   }
 
   &__badge {
@@ -95,6 +107,23 @@
 
     @include themed {
       color: t('background-chat');
+    }
+  }
+
+  &__chevron {
+    font-size: 3rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    position: absolute;
+    right: 1.5rem;
+    z-index: 10;
+    opacity: 1;
+    transition: right ease 0.1s, opacity ease 0.1s;
+
+    &--hidden {
+      right: 0rem;
+      opacity: 0;
     }
   }
 }

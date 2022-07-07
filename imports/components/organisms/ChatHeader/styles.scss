@@ -1,6 +1,6 @@
 @import '../../../scss/theme';
 
-.leftPanelHeader {
+.chatHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -41,6 +41,30 @@
 
     &:last-child {
       margin-right: 2rem;
+    }
+  }
+
+  &__infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+
+    &__title {
+      font-size: 1.8rem;
+
+      @include themed {
+        color: t('text-color-dark');
+      }
+    }
+
+    &__subtitle {
+      font-size: 1.2rem;
+
+      @include themed {
+        color: t('text-color-medium');
+      }
     }
   }
 }

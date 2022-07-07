@@ -5,13 +5,24 @@ import './styles.scss';
 
 type ChatListProps = {
   chats: Chat[];
+  onSelectChat: (chatId: string) => void;
+  chatSelected?: Chat | null;
 };
 
-const ChatList = (props: ChatListProps): JSX.Element => {
+const ChatList = ({
+  chats,
+  chatSelected,
+  onSelectChat,
+}: ChatListProps): JSX.Element => {
   return (
     <div className="chatList">
-      {props.chats.map((chat) => (
-        <ChatItem key={chat._id} {...chat} />
+      {chats.map((chat) => (
+        <ChatItem
+          key={chat._id}
+          {...chat}
+          onSelectChat={onSelectChat}
+          active={chatSelected !== null && chat._id === chatSelected._id}
+        />
       ))}
     </div>
   );

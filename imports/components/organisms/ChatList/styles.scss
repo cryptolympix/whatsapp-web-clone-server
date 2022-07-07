@@ -5,8 +5,8 @@
   flex-direction: column;
   width: 100%;
   height: min-content;
-  overflow-y: auto;
   position: relative;
+  /* overflow-y: scroll; */
 
   @include themed {
     background-color: t('background-chat');

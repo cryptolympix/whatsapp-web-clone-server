@@ -3,10 +3,12 @@ import { MdComputer } from 'react-icons/md';
 import { HiLockClosed } from 'react-icons/hi';
 
 import { ThemeContext } from '../../../contexts/ThemeContext';
+import ChatView from '../../organisms/ChatView';
 import './styles.scss';
 
 type RightPanelProps = {
   displayChat?: boolean;
+  chatSelected?: Chat;
 };
 
 const RightPanel = (props: RightPanelProps): JSX.Element => {
@@ -22,7 +24,7 @@ const RightPanel = (props: RightPanelProps): JSX.Element => {
   return (
     <div className="rightPanel">
       {props.displayChat ? (
-        <div></div>
+        <ChatView chat={props.chatSelected} />
       ) : (
         <div className="rightPanel__container">
           <ThemeContext.Consumer>

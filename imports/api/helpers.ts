@@ -26,6 +26,8 @@ export const createDummyMessages = (messages: Message[]): void => {
   });
 };
 
+// ======================================================================== //
+
 export const findChats = (): Chat[] => {
   return chatCollection
     .find()
@@ -35,6 +37,10 @@ export const findChats = (): Chat[] => {
       const { username, profile } = findUserById(otherUserId);
       return { ...chat, title: username, picture: profile.picture };
     });
+};
+
+export const findChat = (_id: string): Chat => {
+  return chatCollection.findOne({ _id });
 };
 
 const findOtherParticipantId = (participants: string[]): string => {

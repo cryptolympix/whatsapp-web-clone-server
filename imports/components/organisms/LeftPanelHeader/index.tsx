@@ -55,6 +55,7 @@ const LeftPanelHeader = (props: LeftPanelHeaderProps): JSX.Element => {
         <IconWithMenu
           Icon={MdMoreVert}
           iconClassName={'leftPanelHeader__icon leftPanelHeader__icon--right'}
+          useHoverColor
           menuItems={[
             'Nouveau groupe',
             'Messages importants',
