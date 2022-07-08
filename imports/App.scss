@@ -47,8 +47,16 @@
     height: 96%;
     max-width: 1600px;
     margin: auto;
+
     @include themed {
       background: t('background-medium');
+    }
+  }
+
+  @media screen and (max-width: 1600px) {
+    &__container {
+      width: 100%;
+      height: 100%;
     }
   }
 }

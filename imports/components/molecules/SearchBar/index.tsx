@@ -29,7 +29,7 @@ const SearchBar = (props: SearchBarProps) => {
   };
 
   return (
-    <div className={['searchBar', props.className].filter(Boolean).join(' ')}>
+    <div className={['searchBar', props.className].join(' ')}>
       {props.useIcons &&
         (isFocused ? (
           <CSSTransition

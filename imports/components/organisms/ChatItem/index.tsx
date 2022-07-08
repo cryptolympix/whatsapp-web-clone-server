@@ -43,8 +43,42 @@ const ChatItem = ({
     else return number + 1;
   }, 0);
 
-  const now = dayjs().format('D/MM/YYYY');
-  const today = dayjs(lastMessage.createdAt).format('D/MM/YYYY');
+  const getDateLabel = (messageDate: Date) => {
+    const today = dayjs().format('D/MM/YYYY');
+    const yesterday = dayjs().subtract(1, 'day').format('D/MM/YYYY');
+    const lastWeek = dayjs().subtract(7, 'day').valueOf();
+    const messageDay = dayjs(messageDate).format('D/MM/YYYY');
+    const messageTimestamp = dayjs(messageDate).valueOf();
+
+    console.log(yesterday);
+    console.log(messageDay);
+
+    if (messageDay === today) {
+      return dayjs(messageDate).format('HH:mm');
+    } else if (messageDay === yesterday) {
+      return 'hier';
+    } else if (messageTimestamp >= lastWeek) {
+      const day = dayjs(messageDate).day();
+      switch (day) {
+        case 0:
+          return 'dimanche';
+        case 1:
+          return 'lundi';
+        case 2:
+          return 'mardi';
+        case 3:
+          return 'mercredi';
+        case 4:
+          return 'jeudi';
+        case 5:
+          return 'vendredi';
+        case 6:
+          return 'samedi';
+      }
+    } else {
+      return messageDay;
+    }
+  };
 
   return (
     <div
@@ -72,9 +106,7 @@ const ChatItem = ({
               .filter(Boolean)
               .join(' ')}
           >
-            {now === today
-              ? dayjs(lastMessage.createdAt).format('HH:mm')
-              : dayjs(lastMessage.createdAt).format('D/MM/YYYY')}
+            {getDateLabel(lastMessage.createdAt)}
           </div>
         </div>
         <div className="chatItem__row">
