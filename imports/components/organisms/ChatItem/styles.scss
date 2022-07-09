@@ -40,6 +40,7 @@
       width: 8rem;
       height: 100%;
       padding: 1.5rem 0;
+      position: relative;
     }
 
     &--right {
@@ -49,10 +50,12 @@
       align-items: flex-start;
       width: 100%;
       height: 100%;
+      max-width: calc(100% - 8rem);
       padding: 1.5rem 1.5rem 1.5rem 0;
       border-bottom-width: 0.1px;
       border-bottom-style: solid;
       box-sizing: border-box;
+      position: relative;
 
       @include themed {
         border-bottom-color: t('border-color');
@@ -71,6 +74,7 @@
     align-items: center;
     justify-content: space-between;
     line-height: normal;
+    position: relative;
     width: 100%;
 
     &:first-child {
@@ -104,6 +108,9 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    padding-right: 4rem;
+    width: 100%;
+
     @include themed {
       color: t('text-color-medium');
     }
@@ -131,13 +138,13 @@
     height: 3rem;
     padding: 0;
     position: absolute;
-    right: 1.5rem;
+    right: 3%;
     z-index: 10;
     opacity: 1;
     transition: right ease 0.1s, opacity ease 0.1s;
 
     &--hidden {
-      right: 0rem;
+      right: 0%;
       opacity: 0;
     }
   }
