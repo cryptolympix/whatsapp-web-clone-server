@@ -16,7 +16,6 @@ interface Chat {
   title: string;
   picture?: string;
   participants: string[];
-  messages?: string[]; // ids
 }
 
 interface Message {

@@ -39,10 +39,6 @@ export const findChats = (): Chat[] => {
     });
 };
 
-export const findChat = (_id: string): Chat => {
-  return chatCollection.findOne({ _id });
-};
-
 const findOtherParticipantId = (participants: string[]): string => {
   const myId = Meteor.userId();
   let otherUserId: string;
@@ -54,6 +50,10 @@ const findOtherParticipantId = (participants: string[]): string => {
   return otherUserId;
 };
 
+export const findChat = (_id: string): Chat => {
+  return chatCollection.findOne({ _id });
+};
+
 export const findUserById = (_id: string): User => {
   // @ts-ignore
   return Meteor.users.findOne({ _id });
@@ -62,4 +62,9 @@ export const findUserById = (_id: string): User => {
 export const findMessageById = (_id: string): Message => {
   // @ts-ignore
   return messageCollection.findOne({ _id });
+};
+
+export const findMessageByChats = (_id: string): Message[] => {
+  // @ts-ignore
+  return messageCollection.find({ chatId: _id }).fetch();
 };

@@ -19,6 +19,7 @@ const IconWithMenu = ({
   menuClassName,
   menuItems,
   menuItemClassName,
+  menuPlacement,
   useHoverColor,
   onSelectMenuItem,
 }: IconWithMenuProps) => {
@@ -63,6 +64,11 @@ const IconWithMenu = ({
           'iconWithMenu__menu',
           menuClassName,
           menuHidden && 'iconWithMenu__menu--hide',
+          menuPlacement === 'left'
+            ? 'iconWithMenu__menu--left'
+            : menuPlacement === 'right'
+            ? 'iconWithMenu__menu--right'
+            : 'iconWithMenu__menu--left',
         ]
           .filter(Boolean)
           .join(' ')}

@@ -11,7 +11,10 @@ import {
   createDummyMessages,
 } from '../imports/api/helpers';
 
-import '../imports/api/users'; // Init the meteor methods
+// Init the meteor methods
+import '../imports/api/users';
+import '../imports/api/chats';
+import '../imports/api/messages';
 
 Meteor.startup(() => {
   // ================================================ //

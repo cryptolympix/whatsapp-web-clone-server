@@ -10,8 +10,8 @@ export const createDummyMessagesData = (users: Meteor.User[]): Message[] => [
     _id: 'msg-0',
     chatId: 'chat-0',
     content: 'Salut !',
-    createdAt: dayjs().toDate(),
-    read: [],
+    createdAt: dayjs().subtract(2, 'day').toDate(),
+    read: [users[1]._id],
     type: 'TEXT',
     senderId: users[0]._id,
   },
@@ -30,6 +30,15 @@ export const createDummyMessagesData = (users: Meteor.User[]): Message[] => [
     content: 'Salut !',
     createdAt: dayjs().subtract(1, 'year').toDate(),
     read: [],
+    type: 'TEXT',
+    senderId: users[1]._id,
+  },
+  {
+    _id: 'msg-3',
+    chatId: 'chat-0',
+    content: 'Salut !',
+    createdAt: dayjs().subtract(1, 'day').toDate(),
+    read: [users[0]._id],
     type: 'TEXT',
     senderId: users[1]._id,
   },
@@ -53,4 +62,13 @@ if (Meteor.isServer) {
       chatId: { $in: chats },
     });
   });
+  Meteor.publish('messages.insert', (message: Message) => {
+    return messageCollection.insert(message);
+  });
 }
+
+Meteor.methods({
+  'messages.insert': (message: Message) => {
+    return messageCollection.insert(message);
+  },
+});

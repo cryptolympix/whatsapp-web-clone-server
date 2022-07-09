@@ -19,7 +19,8 @@
     "react-icons": "^4.4.0",
     "react-is": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "react-transition-group": "^4.4.2"
+    "react-transition-group": "^4.4.2",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "@types/meteor": "^1.4.87",

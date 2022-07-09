@@ -64,6 +64,7 @@ const SearchBar = (props: SearchBarProps) => {
         onChange={(e) => handleSearch(e.target.value)}
         onFocus={() => handleFocus(true)}
         onBlur={() => handleFocus(false)}
+        autoComplete="off"
       ></input>
     </div>
   );

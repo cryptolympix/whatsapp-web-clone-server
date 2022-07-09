@@ -34,7 +34,7 @@ const Main = (props: MainProps): JSX.Element => {
       phone: '+101010101',
       password: 'password',
     };
-    Meteor.call('user.login', state, (err, res) => {
+    Meteor.call('users.login', state, (err, res) => {
       if (err) {
         console.error(err);
       } else {

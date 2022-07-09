@@ -17,7 +17,7 @@ const Login = (props: LoginProps): JSX.Element => {
     password: string;
   }) => {
     const { username, password } = state;
-    Meteor.call('user.login', state, (err, res) => {
+    Meteor.call('users.login', state, (err, res) => {
       if (err) {
         console.error(err);
       } else {

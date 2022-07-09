@@ -116,7 +116,7 @@ export const dummyUsers: User[] = [
 ];
 
 Meteor.methods({
-  'user.login': ({ username, phone, password }) => {
+  'users.login': ({ username, phone, password }) => {
     const user = Accounts.findUserByUsername(username);
     let exist = !!user;
     if (exist) {

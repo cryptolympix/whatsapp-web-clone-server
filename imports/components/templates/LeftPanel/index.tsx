@@ -16,6 +16,23 @@ const LeftPanel = ({
   onSelectChat,
   chatSelected,
 }: LeftPanelProps): JSX.Element => {
+  const allChats = findChats();
+  const [search, setSearch] = React.useState<string>('');
+  const [chats, setChats] = React.useState<Chat[]>(allChats);
+
+  React.useEffect(() => {
+    // Filter with the title of the chat (simplified)
+    if (search === '') {
+      setChats(allChats);
+    } else {
+      setChats(
+        allChats.filter(
+          (chat) => chat.title.toUpperCase().indexOf(search.toUpperCase()) > -1
+        )
+      );
+    }
+  }, [search]);
+
   return (
     <div className="leftPanel">
       <Header
@@ -24,9 +41,9 @@ const LeftPanel = ({
         onClickData={() => null}
       />
       <NotificationPanel onClick={() => null} />
-      <SearchBarPanel onChangeSearch={(search) => null} />
+      <SearchBarPanel onChangeSearch={setSearch} />
       <ChatList
-        chats={findChats()}
+        chats={chats}
         onSelectChat={onSelectChat}
         chatSelected={chatSelected}
         onClickArchive={() => null}

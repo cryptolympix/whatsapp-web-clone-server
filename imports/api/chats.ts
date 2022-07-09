@@ -9,21 +9,18 @@ export const createDummyChatsData = (users: Meteor.User[]): Chat[] => [
     picture: users[1].profile.picture,
     title: 'Chat 0',
     participants: [users[0]._id, users[1]._id],
-    messages: ['msg-0'],
   },
   {
     _id: 'chat-1',
     picture: users[2].profile.picture,
     title: 'Chat 1',
     participants: [users[2]._id, users[0]._id],
-    messages: ['msg-1'],
   },
   {
     _id: 'chat-2',
     picture: users[2].profile.picture,
     title: 'Chat 2',
     participants: [users[1]._id, users[2]._id],
-    messages: ['msg-2'],
   },
 ];
 

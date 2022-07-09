@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { Meteor } from 'meteor/meteor';
-import { findMessageById } from '../../../api/helpers';
+import { findMessageByChats } from '../../../api/helpers';
 
 import Avatar from '../../atoms/Avatar';
 import IconWithMenu from '../../molecules/IconWithMenu';
@@ -12,7 +12,6 @@ type ChatItemProps = {
   _id: string;
   title: string;
   picture?: string;
-  messages?: string[];
   participants: string[];
   onSelectChat?: (chatId: string) => void;
   active?: boolean;
@@ -23,14 +22,12 @@ const ChatItem = ({
   title,
   participants,
   picture,
-  messages: messageIds,
   active,
   onSelectChat,
 }: ChatItemProps): JSX.Element => {
   const [hover, setHover] = React.useState(false);
 
-  const findMessages = (ids: string[]) => ids.map((id) => findMessageById(id));
-  const messages = findMessages(messageIds);
+  const messages = findMessageByChats(_id);
   const lastMessage = messages.slice(-1)[0];
   const numberMessagesNotRead = messages.reduce((number, message) => {
     if (
@@ -49,9 +46,6 @@ const ChatItem = ({
     const lastWeek = dayjs().subtract(7, 'day').valueOf();
     const messageDay = dayjs(messageDate).format('D/MM/YYYY');
     const messageTimestamp = dayjs(messageDate).valueOf();
-
-    console.log(yesterday);
-    console.log(messageDay);
 
     if (messageDay === today) {
       return dayjs(messageDate).format('HH:mm');
@@ -129,6 +123,7 @@ const ChatItem = ({
                 'Épingler la discussion',
                 'Marquer comme non lu',
               ]}
+              menuPlacement="right"
               onSelectMenuItem={() => null}
             />
           )}
