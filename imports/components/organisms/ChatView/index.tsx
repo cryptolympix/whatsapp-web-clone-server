@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker';
+import { useTracker } from 'meteor/react-meteor-data';
 import dayjs from 'dayjs';
 import uniqid from 'uniqid';
 import { messageCollection } from '../../../api/messages';
@@ -15,11 +15,9 @@ type ChatViewProps = {
 };
 
 const ChatView = ({ chat }: ChatViewProps): JSX.Element => {
-  let messages: Message[] = [];
-
-  Tracker.autorun(() => {
-    messages = messageCollection.find({ chatId: chat._id }).fetch();
-  });
+  let messages = useTracker(() =>
+    messageCollection.find({ chatId: chat._id }).fetch()
+  );
 
   const sendMessage = (messageContent: string) => {
     let message: Message = {

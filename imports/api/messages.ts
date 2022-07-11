@@ -1,48 +1,9 @@
+import dayjs from 'dayjs';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { chatCollection } from './chats';
-import dayjs from 'dayjs';
 
 export const messageCollection = new Mongo.Collection<Message>('messages');
-
-export const createDummyMessagesData = (users: Meteor.User[]): Message[] => [
-  {
-    _id: 'msg-0',
-    chatId: 'chat-0',
-    content: 'Salut !',
-    createdAt: dayjs().subtract(2, 'day').toDate(),
-    read: [users[1]._id],
-    type: 'TEXT',
-    senderId: users[0]._id,
-  },
-  {
-    _id: 'msg-1',
-    chatId: 'chat-1',
-    content: 'Salut !',
-    createdAt: dayjs().subtract(2, 'year').toDate(),
-    read: [],
-    type: 'TEXT',
-    senderId: users[2]._id,
-  },
-  {
-    _id: 'msg-2',
-    chatId: 'chat-2',
-    content: 'Salut !',
-    createdAt: dayjs().subtract(1, 'year').toDate(),
-    read: [],
-    type: 'TEXT',
-    senderId: users[1]._id,
-  },
-  {
-    _id: 'msg-3',
-    chatId: 'chat-0',
-    content: 'Salut !',
-    createdAt: dayjs().subtract(1, 'day').toDate(),
-    read: [users[0]._id],
-    type: 'TEXT',
-    senderId: users[1]._id,
-  },
-];
 
 if (Meteor.isServer) {
   Meteor.publish('messages.all', () => {

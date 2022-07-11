@@ -1,5 +1,6 @@
 import React from 'react';
 import { findChats } from '../../../api/helpers';
+import { useTracker } from 'meteor/react-meteor-data';
 import './styles.scss';
 
 import Header from '../../organisms/LeftPanelHeader';
@@ -16,7 +17,7 @@ const LeftPanel = ({
   onSelectChat,
   chatSelected,
 }: LeftPanelProps): JSX.Element => {
-  const allChats = findChats();
+  const allChats = useTracker(() => findChats());
   const [search, setSearch] = React.useState<string>('');
   const [chats, setChats] = React.useState<Chat[]>(allChats);
 

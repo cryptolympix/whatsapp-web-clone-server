@@ -10,8 +10,14 @@ type MessageViewProps = {
 };
 
 const MessageView = ({ className, messages }: MessageViewProps) => {
+  const ref = React.useRef<HTMLDivElement>();
+
+  React.useEffect(() => {
+    ref.current.scrollBy({ top: ref.current.scrollHeight });
+  }, [messages]);
+
   return (
-    <div className={['messageView', className].join(' ')}>
+    <div ref={ref} className={['messageView', className].join(' ')}>
       {messages
         .sort(
           (msg1, msg2) => msg1.createdAt.valueOf() - msg2.createdAt.valueOf()

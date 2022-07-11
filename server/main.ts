@@ -1,39 +1,34 @@
 import { Meteor } from 'meteor/meteor';
-import { dummyUsers } from '../imports/api/users';
-import { chatCollection, createDummyChatsData } from '../imports/api/chats';
+import { chatCollection } from '../imports/api/chats';
+import { messageCollection } from '../imports/api/messages';
 import {
-  messageCollection,
+  insertDummyChats,
+  insertDummyMessages,
+  insertDummyUsers,
+  dummyUsers,
+  createDummyChatsData,
   createDummyMessagesData,
-} from '../imports/api/messages';
-import {
-  createDummyUsers,
-  createDummyChats,
-  createDummyMessages,
-} from '../imports/api/helpers';
+} from './initData';
 
-// Init the meteor methods
-import '../imports/api/users';
+// init methods
 import '../imports/api/chats';
 import '../imports/api/messages';
+import '../imports/api/users';
 
 Meteor.startup(() => {
   // ================================================ //
   // ============== Create the users ================ //
   // ================================================ //
-
   const numberUsers = Meteor.users.find().count();
-
   if (numberUsers === 0) {
-    createDummyUsers(dummyUsers);
+    insertDummyUsers(dummyUsers);
     console.log(`Dummy users has been created`);
   } else {
     console.log(`There is ${numberUsers} users recorded`);
   }
-
   // ===================================================== //
   // ==== Select ids to create the chats and messages ==== //
   // ===================================================== //
-
   let myUser = Meteor.users.findOne({ username: 'Marco' });
   let otherUsers = Meteor.users
     .find({
@@ -44,30 +39,23 @@ Meteor.startup(() => {
     .fetch()
     .sort(() => Math.random() - 0.5)
     .slice(-2);
-
   let users = [myUser, ...otherUsers];
-
   // ================================================ //
   // ============= Create the chats ================= //
   // ================================================ //
-
   const numberChats = chatCollection.find().count();
-
   if (numberChats === 0) {
-    createDummyChats(createDummyChatsData(users));
+    insertDummyChats(createDummyChatsData(users));
     console.log(`Dummy chats has been created`);
   } else {
     console.log(`There is ${numberChats} chats recorded`);
   }
-
   // ================================================ //
   // ============ Create the messages =============== //
   // ================================================ //
-
   const numberMessages = messageCollection.find().count();
-
   if (numberMessages === 0) {
-    createDummyMessages(createDummyMessagesData(users));
+    insertDummyMessages(createDummyMessagesData(users));
     console.log(`Dummy messages has been created`);
   } else {
     console.log(`There is ${numberMessages} messages recorded`);

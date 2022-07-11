@@ -7,6 +7,7 @@
   padding: 1rem 5rem;
   box-sizing: border-box;
   overflow-y: auto;
+  height: 100%;
 
   @include themed {
     background: t('background-messages');
@@ -16,11 +17,11 @@
     width: 0.5rem;
   }
 
-  ::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
     background: transparent;
   }
 
-  ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     border-radius: 0.2rem;
     @include themed {
       background: #374045;

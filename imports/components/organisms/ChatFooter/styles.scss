@@ -28,7 +28,7 @@
     }
   }
 
-  &__input {
+  &__textarea {
     flex: 1;
     font-size: 1.5rem;
     text-align: left;
@@ -37,6 +37,7 @@
     width: 100%;
     padding: 1rem;
     border-radius: 1rem;
+    resize: none;
 
     @include themed {
       background-color: t('background-light');
