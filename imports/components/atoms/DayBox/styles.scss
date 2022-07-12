@@ -1,0 +1,20 @@
+@import '../../../scss/theme';
+
+.dayBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min-content;
+  height: min-content;
+  padding: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  user-select: none;
+
+  @include themed {
+    color: t('text-color-medium');
+    background-color: t('background-medium');
+  }
+}

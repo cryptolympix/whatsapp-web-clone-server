@@ -32,4 +32,10 @@ Meteor.methods({
   'messages.insert': (message: Message) => {
     return messageCollection.insert(message);
   },
+  'messages.delete': (_id: string) => {
+    return messageCollection.remove({ _id });
+  },
+  'messages.update': (_id: string, newProps: Message) => {
+    return messageCollection.update({ _id }, { ...newProps });
+  },
 });

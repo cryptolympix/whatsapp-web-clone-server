@@ -1,7 +1,7 @@
 import React from 'react';
-import dayjs from 'dayjs';
 import { Meteor } from 'meteor/meteor';
 import { findMessageByChats } from '../../../api/helpers';
+import { getDateLabel } from '../../../utils/date';
 
 import Avatar from '../../atoms/Avatar';
 import IconWithMenu from '../../molecules/IconWithMenu';
@@ -40,37 +40,36 @@ const ChatItem = ({
     else return number + 1;
   }, 0);
 
-  const getDateLabel = (messageDate: Date) => {
-    const today = dayjs().format('D/MM/YYYY');
-    const yesterday = dayjs().subtract(1, 'day').format('D/MM/YYYY');
-    const lastWeek = dayjs().subtract(7, 'day').valueOf();
-    const messageDay = dayjs(messageDate).format('D/MM/YYYY');
-    const messageTimestamp = dayjs(messageDate).valueOf();
-
-    if (messageDay === today) {
-      return dayjs(messageDate).format('HH:mm');
-    } else if (messageDay === yesterday) {
-      return 'hier';
-    } else if (messageTimestamp >= lastWeek) {
-      const day = dayjs(messageDate).day();
-      switch (day) {
-        case 0:
-          return 'dimanche';
-        case 1:
-          return 'lundi';
-        case 2:
-          return 'mardi';
-        case 3:
-          return 'mercredi';
-        case 4:
-          return 'jeudi';
-        case 5:
-          return 'vendredi';
-        case 6:
-          return 'samedi';
+  const onClick = () => {
+    onSelectChat(_id);
+    if (numberMessagesNotRead > 0) {
+      for (let i = messages.length - 1; i >= 0; i--) {
+        let isRead =
+          messages[i].read.findIndex((userId) => userId === Meteor.userId()) >
+          -1;
+        let isOthers = messages[i].senderId !== Meteor.userId();
+        if (isRead && isOthers) {
+          console.log('hey');
+          break;
+        } else {
+          messages[i].read.push(Meteor.userId());
+          Meteor.call(
+            'messages.update',
+            messages[i]._id,
+            messages[i],
+            (err) => {
+              if (err) {
+                console.error(err);
+              } else {
+                console.log(
+                  'Update successfully the message with id:',
+                  messages[i]._id
+                );
+              }
+            }
+          );
+        }
       }
-    } else {
-      return messageDay;
     }
   };
 
@@ -82,10 +81,7 @@ const ChatItem = ({
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div
-        className="chatItem__container"
-        onClick={() => onSelectChat(_id)}
-      ></div>
+      <div className="chatItem__container" onClick={onClick}></div>
       <div className="chatItem__content--left">
         <Avatar iconClassName="chatItem__avatar" avatarUrl={picture} large />
       </div>
@@ -100,7 +96,7 @@ const ChatItem = ({
               .filter(Boolean)
               .join(' ')}
           >
-            {getDateLabel(lastMessage.createdAt)}
+            {getDateLabel(lastMessage.createdAt, true)}
           </div>
         </div>
         <div className="chatItem__row">

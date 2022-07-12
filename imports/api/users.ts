@@ -29,4 +29,20 @@ Meteor.methods({
       // });
     }
   },
+  'users.logout': ({ username, phone, password }) => {
+    const user = Accounts.findUserByUsername(username);
+    let exist = !!user;
+    if (exist) {
+      console.log('User exists', user);
+      return true;
+    } else {
+      console.log("User doesn't exist");
+      return false;
+      // return Accounts.createUser({
+      //   username,
+      //   password,
+      //   profile: { phone, status: "Salut, j'utilise WhatsApp !" },
+      // });
+    }
+  },
 });

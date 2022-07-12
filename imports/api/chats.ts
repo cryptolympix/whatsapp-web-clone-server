@@ -15,3 +15,15 @@ if (Meteor.isServer) {
     });
   });
 }
+
+Meteor.methods({
+  'chats.create': (chat: Chat) => {
+    return chatCollection.insert(chat);
+  },
+  'chats.delete': (_id: string) => {
+    return chatCollection.remove({ _id });
+  },
+  'chats.update': (_id: string, newProps: Chat) => {
+    return chatCollection.update({ _id }, { ...newProps });
+  },
+});
