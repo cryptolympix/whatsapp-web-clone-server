@@ -7,21 +7,32 @@ export const findChats = (): Chat[] => {
     .find()
     .fetch()
     .map((chat) => {
-      const otherUserId = findOtherParticipantId(chat.participants);
+      const otherUserId = findOtherParticipantIdOfChat(chat.participants);
       const { username, profile } = findUserById(otherUserId);
       return { ...chat, title: username, picture: profile.picture };
     });
 };
 
-const findOtherParticipantId = (participants: string[]): string => {
+export const findOtherParticipantIdOfChat = (
+  participants: string[]
+): string => {
   const myId = Meteor.userId();
-  let otherUserId: string;
   if (myId === participants[0]) {
-    otherUserId = participants[1];
+    return participants[1];
   } else {
-    otherUserId = participants[0];
+    return participants[0];
   }
-  return otherUserId;
+};
+
+export const findOtherParticipantOfChat = (
+  participants: string[]
+): Meteor.User => {
+  const myId = Meteor.userId();
+  if (myId === participants[0]) {
+    return Meteor.users.findOne({ _id: participants[1] });
+  } else {
+    return Meteor.users.findOne({ _id: participants[0] });
+  }
 };
 
 export const findChat = (_id: string): Chat => {

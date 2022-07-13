@@ -2,7 +2,10 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 
-import { findMessageByChats } from '../../../api/helpers';
+import {
+  findMessageByChats,
+  findOtherParticipantOfChat,
+} from '../../../api/helpers';
 import { getDateLabel } from '../../../utils/date';
 
 import Avatar from '../../atoms/Avatar';
@@ -47,6 +50,9 @@ const ChatItem = ({
   const messages = useTracker(() => findMessageByChats(_id));
   const lastMessage = useTracker(() => messages.slice(-1)[0] || null);
   const nbMessagesNotRead = useTracker(() => getNumberMessagesNotRead());
+  const otherParticipant = useTracker(() =>
+    findOtherParticipantOfChat(participants)
+  );
 
   const onClick = () => {
     onSelectChat(_id);
@@ -132,7 +138,9 @@ const ChatItem = ({
         </div>
         <div className="chatItem__row">
           <span className="chatItem__message">
-            {lastMessage ? lastMessage.content : ''}
+            {lastMessage
+              ? lastMessage.content
+              : otherParticipant.profile.status}
           </span>
           {nbMessagesNotRead > 0 ? (
             <div className="chatItem__badge">{nbMessagesNotRead}</div>
