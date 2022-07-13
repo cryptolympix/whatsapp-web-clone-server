@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { messageCollection } from './messages';
 
 export const chatCollection = new Mongo.Collection<Chat>('chats');
 
@@ -21,7 +22,10 @@ Meteor.methods({
     return chatCollection.insert(chat);
   },
   'chats.delete': (_id: string) => {
-    return chatCollection.remove({ _id });
+    return (
+      chatCollection.remove({ _id }) &&
+      messageCollection.remove({ chatId: _id })
+    );
   },
   'chats.update': (_id: string, newProps: Chat) => {
     return chatCollection.update({ _id }, { ...newProps });

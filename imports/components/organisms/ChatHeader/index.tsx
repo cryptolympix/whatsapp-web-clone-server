@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 
 import Avatar from '../../atoms/Avatar';
 import { MdMoreVert, MdOutlineSearch } from 'react-icons/md';
@@ -8,9 +9,10 @@ import './styles.scss';
 type ChatHeaderProps = {
   className?: string;
   chat: Chat;
+  onDeleteChat?: (chatId: string) => void;
 };
 
-const ChatHeader = ({ chat, className }: ChatHeaderProps) => {
+const ChatHeader = ({ chat, className, onDeleteChat }: ChatHeaderProps) => {
   const onClickAvatar = () => {};
 
   const onClickSearch = () => {};
@@ -28,8 +30,25 @@ const ChatHeader = ({ chat, className }: ChatHeaderProps) => {
       case 4:
         return;
       case 5:
+        Meteor.call('messages.deleteForChat', chat._id, (err) => {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(
+              `Messages inside the chat ${chat._id} has been deleted successfully`
+            );
+          }
+        });
         return;
       case 6:
+        Meteor.call('chats.delete', chat._id, (err) => {
+          if (err) {
+            console.error(err);
+          } else {
+            onDeleteChat(chat._id);
+            console.log(`Chat ${chat._id} deleted successfully`);
+          }
+        });
         return;
     }
   };

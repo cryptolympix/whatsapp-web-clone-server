@@ -10,29 +10,28 @@ import ChatList from '../../organisms/ChatList';
 
 type LeftPanelProps = {
   onSelectChat?: (chatId: string) => void;
+  onDeleteChat?: (chatId: string) => void;
   chatSelected?: Chat;
 };
 
 const LeftPanel = ({
   onSelectChat,
+  onDeleteChat,
   chatSelected,
 }: LeftPanelProps): JSX.Element => {
-  const allChats = useTracker(() => findChats());
   const [search, setSearch] = React.useState<string>('');
-  const [chats, setChats] = React.useState<Chat[]>(allChats);
+  // const [chats, setChats] = React.useState<Chat[]>(allChats);
 
-  React.useEffect(() => {
+  const chats = useTracker(() => {
     // Filter with the title of the chat (simplified)
     if (search === '') {
-      setChats(allChats);
+      return findChats();
     } else {
-      setChats(
-        allChats.filter(
-          (chat) => chat.title.toUpperCase().indexOf(search.toUpperCase()) > -1
-        )
+      return findChats().filter(
+        (chat) => chat.title.toUpperCase().indexOf(search.toUpperCase()) > -1
       );
     }
-  }, [search]);
+  });
 
   return (
     <div className="leftPanel">
@@ -46,6 +45,7 @@ const LeftPanel = ({
       <ChatList
         chats={chats}
         onSelectChat={onSelectChat}
+        onDeleteChat={onDeleteChat}
         chatSelected={chatSelected}
         onClickArchive={() => null}
       />

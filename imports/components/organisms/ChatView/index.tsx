@@ -12,9 +12,10 @@ import './styles.scss';
 
 type ChatViewProps = {
   chat: Chat;
+  onDeleteChat?: (chatId: string) => void;
 };
 
-const ChatView = ({ chat }: ChatViewProps): JSX.Element => {
+const ChatView = ({ chat, onDeleteChat }: ChatViewProps): JSX.Element => {
   let messages = useTracker(() =>
     messageCollection.find({ chatId: chat._id }).fetch()
   );
@@ -40,7 +41,11 @@ const ChatView = ({ chat }: ChatViewProps): JSX.Element => {
 
   return (
     <div className="chatView">
-      <ChatHeader className="chatView__header" chat={chat} />
+      <ChatHeader
+        className="chatView__header"
+        chat={chat}
+        onDeleteChat={onDeleteChat}
+      />
       <MessageView messages={messages} />
       <ChatFooter className="chatView__footer" onSendClick={sendMessage} />
     </div>

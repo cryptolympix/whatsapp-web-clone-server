@@ -9,9 +9,14 @@ import './styles.scss';
 type RightPanelProps = {
   displayChat?: boolean;
   chatSelected?: Chat;
+  onDeleteChat?: (chatId: string) => void;
 };
 
-const RightPanel = (props: RightPanelProps): JSX.Element => {
+const RightPanel = ({
+  displayChat,
+  chatSelected,
+  onDeleteChat,
+}: RightPanelProps): JSX.Element => {
   const platform =
     navigator.platform === 'Win32'
       ? 'Windows'
@@ -23,8 +28,8 @@ const RightPanel = (props: RightPanelProps): JSX.Element => {
 
   return (
     <div className="rightPanel">
-      {props.displayChat ? (
-        <ChatView chat={props.chatSelected} />
+      {displayChat && chatSelected ? (
+        <ChatView chat={chatSelected} onDeleteChat={onDeleteChat} />
       ) : (
         <div className="rightPanel__container">
           <ThemeContext.Consumer>

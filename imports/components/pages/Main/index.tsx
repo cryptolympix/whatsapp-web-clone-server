@@ -1,11 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { findChat } from '../../../api/helpers';
+import { useTracker } from 'meteor/react-meteor-data';
+import { findChat, findChats } from '../../../api/helpers';
 
 import LeftPanel from '../../templates/LeftPanel';
 import RightPanel from '../../templates/RightPanel';
 import './styles.scss';
-import { useTracker } from 'meteor/react-meteor-data';
 
 type MainProps = {};
 
@@ -20,7 +20,7 @@ const Main = (props: MainProps): JSX.Element => {
       Meteor.subscribe('messages.all'),
     ];
     return !handles.every((handle) => handle.ready());
-  }, []);
+  });
 
   // Programmatically login when we drop the login page
   React.useEffect(() => {
@@ -52,6 +52,14 @@ const Main = (props: MainProps): JSX.Element => {
     }
   };
 
+  const handleChatDelete = (chatId: string) => {
+    if (chatSelected._id === chatId && chatVisible) {
+      console.log('hello');
+      setChatSelected(null);
+      setChatVisible(false);
+    }
+  };
+
   if (loading || !login) {
     return <div className="main" />;
   } else {
@@ -59,9 +67,14 @@ const Main = (props: MainProps): JSX.Element => {
       <div className="main">
         <LeftPanel
           onSelectChat={handleChatSelection}
+          onDeleteChat={handleChatDelete}
           chatSelected={chatSelected}
         />
-        <RightPanel displayChat={chatVisible} chatSelected={chatSelected} />
+        <RightPanel
+          displayChat={chatVisible}
+          chatSelected={chatSelected}
+          onDeleteChat={handleChatDelete}
+        />
       </div>
     );
   }

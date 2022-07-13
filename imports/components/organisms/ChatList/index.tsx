@@ -6,7 +6,8 @@ import './styles.scss';
 
 type ChatListProps = {
   chats: Chat[];
-  onSelectChat: (chatId: string) => void;
+  onSelectChat?: (chatId: string) => void;
+  onDeleteChat?: (chatId: string) => void;
   chatSelected?: Chat | null;
   onClickArchive?: () => void;
 };
@@ -15,6 +16,7 @@ const ChatList = ({
   chats,
   chatSelected,
   onSelectChat,
+  onDeleteChat,
   onClickArchive,
 }: ChatListProps): JSX.Element => {
   return (
@@ -25,6 +27,7 @@ const ChatList = ({
           key={chat._id}
           {...chat}
           onSelectChat={onSelectChat}
+          onDeleteChat={onDeleteChat}
           active={chatSelected !== null && chat._id === chatSelected._id}
         />
       ))}

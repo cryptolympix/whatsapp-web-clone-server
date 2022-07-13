@@ -35,6 +35,9 @@ Meteor.methods({
   'messages.delete': (_id: string) => {
     return messageCollection.remove({ _id });
   },
+  'messages.deleteForChat': (chatId: string) => {
+    return messageCollection.remove({ chatId });
+  },
   'messages.update': (_id: string, newProps: Message) => {
     return messageCollection.update({ _id }, { ...newProps });
   },

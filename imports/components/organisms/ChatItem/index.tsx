@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Tracker } from 'meteor/tracker';
 
 import { findMessageByChats } from '../../../api/helpers';
 import { getDateLabel } from '../../../utils/date';
@@ -17,6 +16,7 @@ type ChatItemProps = {
   picture?: string;
   participants: string[];
   onSelectChat?: (chatId: string) => void;
+  onDeleteChat?: (chatId: string) => void;
   active?: boolean;
 };
 
@@ -27,6 +27,7 @@ const ChatItem = ({
   picture,
   active,
   onSelectChat,
+  onDeleteChat,
 }: ChatItemProps): JSX.Element => {
   const [hover, setHover] = React.useState(false);
 
@@ -80,6 +81,29 @@ const ChatItem = ({
     }
   };
 
+  const handleSelectMenuItem = (index: number) => {
+    switch (index) {
+      case 0:
+        return;
+      case 1:
+        return;
+      case 2:
+        onDeleteChat(_id);
+        Meteor.call('chats.delete', _id, (err) => {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(`Chat ${_id} deleted successfully`);
+          }
+        });
+        return;
+      case 3:
+        return;
+      case 4:
+        return;
+    }
+  };
+
   return (
     <div
       className={['chatItem', active && 'chatItem--active']
@@ -129,7 +153,7 @@ const ChatItem = ({
                 'Marquer comme non lu',
               ]}
               menuPlacement="right"
-              onSelectMenuItem={() => null}
+              onSelectMenuItem={handleSelectMenuItem}
             />
           )}
         </div>
