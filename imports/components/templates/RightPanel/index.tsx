@@ -4,19 +4,26 @@ import { HiLockClosed } from 'react-icons/hi';
 
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import ChatView from '../../organisms/ChatView';
+import ChatInfoPanel from '../ChatInfoPanel';
 import './styles.scss';
 
 type RightPanelProps = {
+  className?: string;
   displayChat?: boolean;
   chatSelected?: Chat;
+  onCloseChat?: (chatId: string) => void;
   onDeleteChat?: (chatId: string) => void;
 };
 
 const RightPanel = ({
+  className,
   displayChat,
   chatSelected,
+  onCloseChat,
   onDeleteChat,
 }: RightPanelProps): JSX.Element => {
+  const [displayContactInfo, setDisplayContactInfo] = React.useState(false);
+
   const platform =
     navigator.platform === 'Win32'
       ? 'Windows'
@@ -26,10 +33,39 @@ const RightPanel = ({
       ? 'Linux'
       : 'Unknown';
 
+  const handleDeleteChat = (chatId: string) => {
+    onDeleteChat(chatId);
+    setDisplayContactInfo(false);
+  };
+
   return (
-    <div className="rightPanel">
+    <div className={['rightPanel', className].join(' ')}>
       {displayChat && chatSelected ? (
-        <ChatView chat={chatSelected} onDeleteChat={onDeleteChat} />
+        <>
+          <ChatView
+            className={[
+              'rightPanel__chatView',
+              displayContactInfo && 'rightPanel__chatView--reduce',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            chat={chatSelected}
+            onCloseChat={onCloseChat}
+            onDeleteChat={handleDeleteChat}
+            onDisplayContactInfo={() => setDisplayContactInfo(true)}
+          />
+          <ChatInfoPanel
+            className={[
+              'rightPanel__chatInfo',
+              displayContactInfo && 'rightPanel__chatInfo--active',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            chat={displayContactInfo ? chatSelected : null}
+            onClose={() => setDisplayContactInfo(false)}
+            onDeleteChat={handleDeleteChat}
+          />
+        </>
       ) : (
         <div className="rightPanel__container">
           <ThemeContext.Consumer>

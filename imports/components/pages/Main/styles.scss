@@ -5,4 +5,14 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
+  position: relative;
+
+  &__leftPanel {
+    width: 35%;
+    min-width: 40rem;
+  }
+
+  &__rightPanel {
+    width: 65%;
+  }
 }

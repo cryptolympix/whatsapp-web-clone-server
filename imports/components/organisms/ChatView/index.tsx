@@ -11,11 +11,20 @@ import MessageView from '../MessageView';
 import './styles.scss';
 
 type ChatViewProps = {
+  className?: string;
   chat: Chat;
+  onCloseChat?: (chatId: string) => void;
   onDeleteChat?: (chatId: string) => void;
+  onDisplayContactInfo?: () => void;
 };
 
-const ChatView = ({ chat, onDeleteChat }: ChatViewProps): JSX.Element => {
+const ChatView = ({
+  className,
+  chat,
+  onCloseChat,
+  onDeleteChat,
+  onDisplayContactInfo,
+}: ChatViewProps): JSX.Element => {
   let messages = useTracker(() =>
     messageCollection.find({ chatId: chat._id }).fetch()
   );
@@ -40,11 +49,13 @@ const ChatView = ({ chat, onDeleteChat }: ChatViewProps): JSX.Element => {
   };
 
   return (
-    <div className="chatView">
+    <div className={['chatView', className].join(' ')}>
       <ChatHeader
         className="chatView__header"
         chat={chat}
+        onCloseChat={onCloseChat}
         onDeleteChat={onDeleteChat}
+        onDisplayContactInfo={onDisplayContactInfo}
       />
       <MessageView messages={messages} />
       <ChatFooter className="chatView__footer" onSendClick={sendMessage} />

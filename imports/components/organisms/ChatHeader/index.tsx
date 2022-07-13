@@ -9,21 +9,29 @@ import './styles.scss';
 type ChatHeaderProps = {
   className?: string;
   chat: Chat;
+  onCloseChat?: (chatId: string) => void;
   onDeleteChat?: (chatId: string) => void;
+  onDisplayContactInfo?: () => void;
 };
 
-const ChatHeader = ({ chat, className, onDeleteChat }: ChatHeaderProps) => {
-  const onClickAvatar = () => {};
-
+const ChatHeader = ({
+  chat,
+  className,
+  onCloseChat,
+  onDeleteChat,
+  onDisplayContactInfo,
+}: ChatHeaderProps) => {
   const onClickSearch = () => {};
 
   const handleSelectMenuItem = (index: number) => {
     switch (index) {
       case 0:
+        onDisplayContactInfo();
         return;
       case 1:
         return;
       case 2:
+        onCloseChat(chat._id);
         return;
       case 3:
         return;
@@ -59,7 +67,7 @@ const ChatHeader = ({ chat, className, onDeleteChat }: ChatHeaderProps) => {
         <Avatar
           avatarUrl={chat ? chat.picture : ''}
           iconClassName="chatHeader__icon chatHeader__icon--left"
-          onClick={onClickAvatar}
+          onClick={onDisplayContactInfo}
         />
       </div>
       <div className="chatHeader__infos">

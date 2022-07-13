@@ -9,12 +9,14 @@ import SearchBarPanel from '../../organisms/SearchBarPanel';
 import ChatList from '../../organisms/ChatList';
 
 type LeftPanelProps = {
+  className?: string;
   onSelectChat?: (chatId: string) => void;
   onDeleteChat?: (chatId: string) => void;
   chatSelected?: Chat;
 };
 
 const LeftPanel = ({
+  className,
   onSelectChat,
   onDeleteChat,
   chatSelected,
@@ -34,7 +36,7 @@ const LeftPanel = ({
   });
 
   return (
-    <div className="leftPanel">
+    <div className={['leftPanel', className].join(' ')}>
       <Header
         onClickAvatar={() => null}
         onClickChat={() => null}

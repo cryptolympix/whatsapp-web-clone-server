@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { findChat, findChats } from '../../../api/helpers';
+import { findChat } from '../../../api/helpers';
 
 import LeftPanel from '../../templates/LeftPanel';
 import RightPanel from '../../templates/RightPanel';
@@ -54,7 +54,22 @@ const Main = (props: MainProps): JSX.Element => {
 
   const handleChatDelete = (chatId: string) => {
     if (chatSelected._id === chatId && chatVisible) {
-      console.log('hello');
+      Meteor.call('chats.delete', chatSelected._id, (err) => {
+        if (err) {
+          console.error(err);
+        } else {
+          setChatSelected(null);
+          setChatVisible(false);
+          console.log(
+            `Chatt ${chatSelected._id} has been successfully deleted`
+          );
+        }
+      });
+    }
+  };
+
+  const handleCloseChat = (chatId: string) => {
+    if (chatSelected._id === chatId && chatVisible) {
       setChatSelected(null);
       setChatVisible(false);
     }
@@ -66,14 +81,17 @@ const Main = (props: MainProps): JSX.Element => {
     return (
       <div className="main">
         <LeftPanel
+          className="main__leftPanel"
           onSelectChat={handleChatSelection}
           onDeleteChat={handleChatDelete}
           chatSelected={chatSelected}
         />
         <RightPanel
+          className="main__rightPanel"
           displayChat={chatVisible}
           chatSelected={chatSelected}
           onDeleteChat={handleChatDelete}
+          onCloseChat={handleCloseChat}
         />
       </div>
     );
