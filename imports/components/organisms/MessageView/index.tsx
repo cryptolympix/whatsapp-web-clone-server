@@ -14,74 +14,73 @@ type MessageViewProps = {
 const MessageView = ({ className, messages }: MessageViewProps) => {
   const ref = React.useRef<HTMLDivElement>();
 
+  if (messages.length > 1) {
+    messages = messages.sort(
+      (msg1, msg2) => msg1.createdAt.valueOf() - msg2.createdAt.valueOf()
+    );
+  }
+
   React.useEffect(() => {
     ref.current.scrollBy({ top: ref.current.scrollHeight });
   }, [messages]);
 
   return (
     <div ref={ref} className={['messageView', className].join(' ')}>
-      {messages
-        .sort(
-          (msg1, msg2) => msg1.createdAt.valueOf() - msg2.createdAt.valueOf()
-        )
-        .map((message, index, messages) => {
-          let Day: () => JSX.Element;
+      {messages.length === 0
+        ? null
+        : messages.map((message, index, messages) => {
+            let Day: () => JSX.Element;
 
-          if (index === 0) {
-            Day = () => (
-              <div
-                key={`daybox-${index}`}
-                className="messageView__row messageView__row--center"
-              >
-                <DayBox date={messages[index].createdAt} />
-              </div>
-            );
-          } else if (
-            dayjs(messages[index].createdAt).format('D/MM/YYYY') !==
-            dayjs(messages[index - 1].createdAt).format('D/MM/YYYY')
-          ) {
-            Day = () => (
-              <div
-                key={`daybox-${index}`}
-                className="messageView__row messageView__row--center"
-              >
-                <DayBox date={messages[index].createdAt} />
-              </div>
-            );
-          }
+            if (index === 0) {
+              Day = () => (
+                <div className="messageView__row messageView__row--center">
+                  <DayBox date={messages[index].createdAt} />
+                </div>
+              );
+            } else if (
+              dayjs(messages[index].createdAt).format('D/MM/YYYY') !==
+              dayjs(messages[index - 1].createdAt).format('D/MM/YYYY')
+            ) {
+              Day = () => (
+                <div className="messageView__row messageView__row--center">
+                  <DayBox date={messages[index].createdAt} />
+                </div>
+              );
+            }
 
-          const Base = () => (
-            <div
-              key={message._id}
-              className={[
-                'messageView__row',
-                message.senderId === Meteor.userId()
-                  ? 'messageView__row--right'
-                  : 'messageView__row--left',
-              ].join(' ')}
-            >
-              <MessageBox
+            const Base = () => (
+              <div
                 className={[
-                  'messageView__message',
+                  'messageView__row',
                   message.senderId === Meteor.userId()
-                    ? 'messageView__message--right'
-                    : 'messageView__message--left',
+                    ? 'messageView__row--right'
+                    : 'messageView__row--left',
                 ].join(' ')}
-                message={message}
-                side={message.senderId === Meteor.userId() ? 'right' : 'left'}
-              />
-            </div>
-          );
+              >
+                <MessageBox
+                  className={[
+                    'messageView__message',
+                    message.senderId === Meteor.userId()
+                      ? 'messageView__message--right'
+                      : 'messageView__message--left',
+                  ].join(' ')}
+                  message={message}
+                  side={message.senderId === Meteor.userId() ? 'right' : 'left'}
+                />
+              </div>
+            );
 
-          return Day ? (
-            <>
-              <Day />
-              <Base />
-            </>
-          ) : (
-            <Base />
-          );
-        })}
+            return Day ? (
+              <React.Fragment key={index}>
+                <Day />
+                <Base />
+              </React.Fragment>
+            ) : (
+              <React.Fragment key={index}>
+                <Base />
+              </React.Fragment>
+            );
+          })}
     </div>
   );
 };

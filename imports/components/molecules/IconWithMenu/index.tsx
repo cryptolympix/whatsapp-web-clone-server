@@ -31,7 +31,7 @@ const IconWithMenu = ({
   };
 
   const handleClickOutside = (event: React.MouseEvent) => {
-    if (!iconRef.current.contains(event.target as Node)) {
+    if (iconRef.current && !iconRef.current.contains(event.target as Node)) {
       setMenuHidden(true);
     }
   };
@@ -40,7 +40,7 @@ const IconWithMenu = ({
     document.addEventListener('click', handleClickOutside as any);
     return () =>
       document.removeEventListener('click', handleClickOutside as any);
-  }, []);
+  }, [iconRef]);
 
   React.useEffect(() => {
     setMenuHidden(true);

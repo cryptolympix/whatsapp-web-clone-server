@@ -16,6 +16,28 @@ type MessageBoxProps = {
 const MessageBox = ({ className, message, side }: MessageBoxProps) => {
   const [hover, setHover] = React.useState(false);
 
+  const onSelectMenu = (index: number) => {
+    switch (index) {
+      case 0:
+        return;
+      case 1:
+        return;
+      case 2:
+        return;
+      case 3:
+        return;
+      case 4:
+        Meteor.call('messages.delete', message._id, (err) => {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log(`Message ${message._id} deleted successfully`);
+          }
+        });
+        return;
+    }
+  };
+
   return (
     <div
       className={['messageBox', className].join(' ')}
@@ -40,7 +62,7 @@ const MessageBox = ({ className, message, side }: MessageBoxProps) => {
             'Supprimer le message',
           ]}
           menuPlacement={side === 'left' ? 'right' : 'left'}
-          onSelectMenuItem={() => null}
+          onSelectMenuItem={onSelectMenu}
         />
         <div className="messageBox__footer">
           <span className="messageBox__date">

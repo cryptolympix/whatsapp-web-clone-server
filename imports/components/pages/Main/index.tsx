@@ -33,7 +33,6 @@ const Main = (props: MainProps): JSX.Element => {
       if (err) {
         console.error(err);
       } else {
-        console.log(res);
         Meteor.loginWithPassword(state.username, state.password, (err) => {
           if (err) {
             console.error(err);

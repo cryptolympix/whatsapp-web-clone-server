@@ -1,5 +1,8 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { useTracker } from 'meteor/react-meteor-data';
+import { Tracker } from 'meteor/tracker';
+
 import { findMessageByChats } from '../../../api/helpers';
 import { getDateLabel } from '../../../utils/date';
 
@@ -27,22 +30,26 @@ const ChatItem = ({
 }: ChatItemProps): JSX.Element => {
   const [hover, setHover] = React.useState(false);
 
-  const messages = findMessageByChats(_id);
-  const lastMessage = messages.slice(-1)[0];
-  const numberMessagesNotRead = messages.reduce((number, message) => {
-    if (
-      // Check if the user id is on the array
-      message.read.findIndex((userId) => userId === Meteor.userId()) !== -1 ||
-      // You are the sender of the message
-      message.senderId === Meteor.userId()
-    )
-      return number;
-    else return number + 1;
-  }, 0);
+  const getNumberMessagesNotRead = () =>
+    messages.reduce((number, message) => {
+      if (
+        // Check if the user id is on the array
+        message.read.findIndex((userId) => userId === Meteor.userId()) !== -1 ||
+        // You are the sender of the message
+        message.senderId === Meteor.userId()
+      )
+        return number;
+      else return number + 1;
+    }, 0);
+
+  // Reactive render
+  const messages = useTracker(() => findMessageByChats(_id));
+  const lastMessage = useTracker(() => messages.slice(-1)[0] || null);
+  const nbMessagesNotRead = useTracker(() => getNumberMessagesNotRead());
 
   const onClick = () => {
     onSelectChat(_id);
-    if (numberMessagesNotRead > 0) {
+    if (nbMessagesNotRead > 0) {
       for (let i = messages.length - 1; i >= 0; i--) {
         let isRead =
           messages[i].read.findIndex((userId) => userId === Meteor.userId()) >
@@ -91,18 +98,20 @@ const ChatItem = ({
           <div
             className={[
               'chatItem__date',
-              numberMessagesNotRead > 0 && 'chatItem__date--colored',
+              nbMessagesNotRead > 0 && 'chatItem__date--colored',
             ]
               .filter(Boolean)
               .join(' ')}
           >
-            {getDateLabel(lastMessage.createdAt, true)}
+            {lastMessage ? getDateLabel(lastMessage.createdAt, true) : ''}
           </div>
         </div>
         <div className="chatItem__row">
-          <span className="chatItem__message">{lastMessage.content}</span>
-          {numberMessagesNotRead > 0 ? (
-            <div className="chatItem__badge">{numberMessagesNotRead}</div>
+          <span className="chatItem__message">
+            {lastMessage ? lastMessage.content : ''}
+          </span>
+          {nbMessagesNotRead > 0 ? (
+            <div className="chatItem__badge">{nbMessagesNotRead}</div>
           ) : (
             <IconWithMenu
               iconClassName={[
