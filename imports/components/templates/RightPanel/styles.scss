@@ -15,6 +15,10 @@
 
     &--reduce {
       width: 55%;
+      @media (max-width: 1224px) {
+        width: 0%;
+        opacity: 0;
+      }
     }
   }
 
@@ -24,6 +28,9 @@
 
     &--active {
       width: 45%;
+      @media (max-width: 1224px) {
+        width: 100%;
+      }
     }
   }
 
