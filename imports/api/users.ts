@@ -45,4 +45,11 @@ Meteor.methods({
       // });
     }
   },
+  'users.update': (username: string, newProps: Meteor.User) => {
+    const user = Accounts.findUserByUsername(username);
+    let exist = !!user;
+    if (exist) {
+      Meteor.users.update({ username }, { ...user, ...newProps });
+    }
+  },
 });

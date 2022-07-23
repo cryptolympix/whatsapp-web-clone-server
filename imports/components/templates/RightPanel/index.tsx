@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdComputer } from 'react-icons/md';
 import { HiLockClosed } from 'react-icons/hi';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { ThemeContext } from '../../../contexts/ThemeContext';
 import ChatView from '../../organisms/ChatView';
@@ -70,7 +71,7 @@ const RightPanel = ({
         <div className="rightPanel__container">
           <ThemeContext.Consumer>
             {({ isDark }) => (
-              <img
+              <LazyLoadImage
                 alt="background"
                 className="rightPanel__image"
                 src={

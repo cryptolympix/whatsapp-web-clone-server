@@ -1,8 +1,10 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { findChats } from '../../../api/helpers';
 import { useTracker } from 'meteor/react-meteor-data';
 import './styles.scss';
 
+import UserPanel from '../UserPanel';
 import Header from '../../organisms/LeftPanelHeader';
 import NotificationPanel from '../../organisms/NotificationPanel';
 import SearchBarPanel from '../../organisms/SearchBarPanel';
@@ -22,7 +24,7 @@ const LeftPanel = ({
   chatSelected,
 }: LeftPanelProps): JSX.Element => {
   const [search, setSearch] = React.useState<string>('');
-  // const [chats, setChats] = React.useState<Chat[]>(allChats);
+  const [displayUserInfo, setDisplayUserInfo] = React.useState(false);
 
   const chats = useTracker(() => {
     // Filter with the title of the chat (simplified)
@@ -35,10 +37,22 @@ const LeftPanel = ({
     }
   });
 
+  const user = useTracker(() => Meteor.user());
+
   return (
     <div className={['leftPanel', className].join(' ')}>
+      <UserPanel
+        className={[
+          'leftPanel__userInfo',
+          displayUserInfo && 'leftPanel__userInfo--active',
+        ]
+          .filter(Boolean)
+          .join(' ')}
+        user={user}
+        onBack={() => setDisplayUserInfo(false)}
+      />
       <Header
-        onClickAvatar={() => null}
+        onClickAvatar={() => setDisplayUserInfo(true)}
         onClickChat={() => null}
         onClickData={() => null}
       />

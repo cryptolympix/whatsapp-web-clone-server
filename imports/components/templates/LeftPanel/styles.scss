@@ -5,9 +5,23 @@
   flex-direction: column;
   height: 100%;
   min-width: 300px;
+  position: relative;
 
   @include themed {
     border-right: 0.1px solid t('border-color');
     background: t('background-chat');
+  }
+
+  &__userInfo {
+    opacity: 0;
+    right: 40rem;
+    position: absolute;
+    transition: opacity 0.2s ease, right 0.2s ease;
+
+    &--active {
+      opacity: 1;
+      right: 0;
+      z-index: 15;
+    }
   }
 }

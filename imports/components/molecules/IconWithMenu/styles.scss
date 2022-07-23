@@ -7,7 +7,6 @@
   width: 3rem;
   height: 3rem;
   background: transparent;
-  z-index: 50;
 
   @include themed {
     color: t('text-color-medium');
