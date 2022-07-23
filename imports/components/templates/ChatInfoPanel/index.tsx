@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { IconType } from 'react-icons';
-
 import {
   MdClose,
   MdStar,
@@ -13,9 +12,10 @@ import {
   MdThumbDown,
   MdDelete,
 } from 'react-icons/md';
+import { findOtherParticipantOfChat } from '../../../api/helpers';
+
 import Avatar from '../../atoms/Avatar';
 import './styles.scss';
-import { findOtherParticipantOfChat } from '../../../api/helpers';
 
 type ChatInfoPanelProps = {
   className?: string;
