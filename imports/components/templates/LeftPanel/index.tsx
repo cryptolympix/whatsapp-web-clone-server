@@ -50,6 +50,7 @@ const LeftPanel = ({
           .join(' ')}
         user={user}
         onBack={() => setDisplayUserInfo(false)}
+        isOpen={displayUserInfo}
       />
       <Header
         onClickAvatar={() => setDisplayUserInfo(true)}

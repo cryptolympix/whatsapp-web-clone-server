@@ -1,5 +1,4 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import { IconType } from 'react-icons';
 import {
   MdClose,

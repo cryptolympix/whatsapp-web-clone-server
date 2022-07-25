@@ -12,16 +12,33 @@
     background: t('background-chat');
   }
 
+  @-webkit-keyframes slide {
+    from {
+      right: 100%;
+    }
+    to {
+      right: 0;
+    }
+  }
+
+  @keyframes slide {
+    from {
+      right: 100%;
+    }
+    to {
+      right: 0;
+    }
+  }
+
   &__userInfo {
-    opacity: 0;
-    right: 40rem;
+    right: 100%;
     position: absolute;
-    transition: opacity 0.2s ease, right 0.2s ease;
+    z-index: 20;
+    right: 100%;
+    transition: right 0.4s ease;
 
     &--active {
-      opacity: 1;
       right: 0;
-      z-index: 15;
     }
   }
 }

@@ -8,9 +8,10 @@ type UserPanelProps = {
   className?: string;
   user: Meteor.User;
   onBack?: () => void;
+  isOpen: boolean;
 };
 
-const UserPanel = ({ className, user, onBack }: UserPanelProps) => {
+const UserPanel = ({ className, user, onBack, isOpen }: UserPanelProps) => {
   const [username, setUsername] = React.useState(user.username);
   const [status, setStatus] = React.useState(user.profile.status);
   const usernameInputRef = React.useRef<HTMLInputElement>();
@@ -72,17 +73,28 @@ const UserPanel = ({ className, user, onBack }: UserPanelProps) => {
     return () => document.removeEventListener('keydown', onPress);
   }, [username, status]);
 
+  const sectionClasses = [
+    'userPanel__section',
+    isOpen && 'userPanel__section--animate',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const avatarClasses = [
+    'userPanel__avatar',
+    isOpen && 'userPanel__avatar--animate',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <div className={['userPanel', className].join(' ')}>
       <div className="userPanel__header">
         <MdArrowBack className="userPanel__header__arrow" onClick={onBack} />
         <span className="userPanel__header__title">Profil</span>
       </div>
-      <Avatar
-        avatarUrl={user.profile.picture}
-        iconClassName="userPanel__avatar"
-      />
-      <div className="userPanel__section">
+      <Avatar avatarUrl={user.profile.picture} iconClassName={avatarClasses} />
+      <div className={sectionClasses}>
         <span className="userPanel__section__title">Votre nom</span>
         <div className="userPanel__section__row">
           <input
@@ -103,7 +115,7 @@ const UserPanel = ({ className, user, onBack }: UserPanelProps) => {
           auprès de vos contacts WhatsApp.
         </span>
       </div>
-      <div className="userPanel__section">
+      <div className={sectionClasses}>
         <span className="userPanel__section__title">Actu</span>
         <div className="userPanel__section__row">
           <input
