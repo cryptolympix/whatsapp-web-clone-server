@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
+    "build": "meteor build ./build",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
@@ -20,6 +21,7 @@
     "react-is": "^18.2.0",
     "react-lazy-load-image-component": "^1.5.5",
     "react-router-dom": "^6.3.0",
+    "react-tooltip": "^4.2.21",
     "react-transition-group": "^4.4.2",
     "uniqid": "^5.4.0"
   },

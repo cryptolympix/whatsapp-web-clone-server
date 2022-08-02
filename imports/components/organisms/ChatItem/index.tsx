@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
+import ReactTooltip from 'react-tooltip';
 
 import {
   findMessageByChats,
@@ -117,7 +118,10 @@ const ChatItem = ({
         .join(' ')}
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      data-tip={lastMessage.content || ''}
+      data-delay-show="1000"
     >
+      <ReactTooltip />
       <div className="chatItem__container" onClick={onClick}></div>
       <div className="chatItem__content--left">
         <Avatar iconClassName="chatItem__avatar" avatarUrl={picture} large />
