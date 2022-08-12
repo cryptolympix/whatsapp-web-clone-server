@@ -6,7 +6,8 @@ This is a clone of the WhatsApp web application developed in [React](https://rea
 
 - ⚛️ React 18
 - 🔥 Typescript 4
-- 🔥 Meteor
+- 🔥 Express 4
+- 🔥 Mongo DB
 - ✅ SASS
 - ✅ React Router 6
 
