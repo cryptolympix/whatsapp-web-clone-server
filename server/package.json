@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node ./build/server.js",
+    "build": "tsc",
+    "reset": "node ./build/utils/createDummyData.js"
+  },
+  "keywords": [],
+  "author": "Maxime Joly <maxime.joly2808@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/mongoose-unique-validator": "^1.0.6",
+    "@types/node": "^18.7.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dayjs": "^1.11.4",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.2",
+    "mongoose-unique-validator": "^3.1.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}
