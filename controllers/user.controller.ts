@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.model';
 
 export function loginUser(req, res) {
-  console.log(req.body);
   if (req.body.password && req.body.username && req.body.phone) {
     User.findOne({ username: req.body.username, phone: req.body.phone })
       .then((user) => {
