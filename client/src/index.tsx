@@ -8,7 +8,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === 'development'
-    ? `http://${process.env.REACT_APP_SERVER_URL}:${process.env.REACT_APP_SERVER_PORT}/api`
+    ? `http://${process.env.REACT_APP_SERVER_URL}:${process.env.PORT}/api`
     : `https://${process.env.REACT_APP_SERVER_URL}/api`;
 
 const root = ReactDOM.createRoot(

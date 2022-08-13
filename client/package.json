@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production react-scripts start",
+    "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -38,6 +38,7 @@
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.4",
+    "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "normalize-scss": "^7.0.1",
     "react": "^18.2.0",
@@ -52,9 +53,6 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
-    "@types/bcryptjs": "^2.4.2",
-    "@types/react-lazy-load-image-component": "^1.5.2",
-    "cross-env": "^7.0.3"
+    "@types/react-lazy-load-image-component": "^1.5.2"
   }
 }
