@@ -23,7 +23,7 @@ export const dummyUsers: User[] = [
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
-    online: true,
+    online: false,
   },
   {
     _id: mongoObjectId(),
@@ -34,7 +34,7 @@ export const dummyUsers: User[] = [
       picture: 'https://randomuser.me/api/portraits/thumb/lego/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
-    online: true,
+    online: false,
   },
   {
     _id: mongoObjectId(),
@@ -45,7 +45,7 @@ export const dummyUsers: User[] = [
       picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
-    online: true,
+    online: false,
   },
   {
     _id: mongoObjectId(),
@@ -56,7 +56,7 @@ export const dummyUsers: User[] = [
       picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
-    online: true,
+    online: false,
   },
   {
     _id: mongoObjectId(),
@@ -89,7 +89,7 @@ export const dummyUsers: User[] = [
       picture: 'https://randomuser.me/api/portraits/thumb/men/2.jpg',
       status: "Salut j'utilise whatsapp",
     },
-    online: true,
+    online: false,
   },
   {
     _id: mongoObjectId(),
@@ -100,7 +100,7 @@ export const dummyUsers: User[] = [
       picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
-    online: true,
+    online: false,
   },
   {
     _id: mongoObjectId(),
@@ -111,7 +111,7 @@ export const dummyUsers: User[] = [
       picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
-    online: true,
+    online: false,
   },
   {
     _id: mongoObjectId(),
@@ -122,7 +122,7 @@ export const dummyUsers: User[] = [
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
-    online: true,
+    online: false,
   },
 ];
 

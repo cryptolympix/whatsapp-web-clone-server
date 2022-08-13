@@ -4,7 +4,10 @@ import User from '../models/user.model';
 
 export function loginUser(req, res) {
   if (req.body.password && req.body.username && req.body.phone) {
-    User.findOne({ username: req.body.username, phone: req.body.phone })
+    User.findOne({
+      username: req.body.username,
+      'profile.phone': req.body.phone,
+    })
       .then((user) => {
         if (!user) {
           return res.status(404).json({ error: `User not found` });
@@ -15,16 +18,33 @@ export function loginUser(req, res) {
             if (!valid) {
               return res.status(401).json({ error: 'password incorrect' });
             }
-            res.status(200).json({
-              userId: user._id,
-              token: jwt.sign({ userId: user._id }, 'RANDOM_TOKEN_SECRET', {
-                expiresIn: '24h',
-              }),
-            });
+            User.updateOne(
+              { username: req.body.username, 'profile.phone': req.body.phone },
+              { online: true }
+            )
+              .then(() => {
+                res.status(200).json({
+                  userId: user._id,
+                  token: jwt.sign({ userId: user._id }, 'RANDOM_TOKEN_SECRET', {
+                    expiresIn: '24h',
+                  }),
+                });
+              })
+              .catch((error) => res.status(500).json({ error }));
           })
           .catch((error) => res.status(500).json({ error }));
       })
       .catch((error) => res.status(500).json({ error }));
+  } else {
+    res.status(400).json({ message: 'bad mandatory' });
+  }
+}
+
+export function logoutUser(req, res) {
+  if (req.params.id) {
+    User.updateOne({ _id: req.params.id }, { online: false })
+      .then(() => res.status(200).json({ message: 'logout successfully' }))
+      .catch((error) => res.status(400).json({ error }));
   } else {
     res.status(400).json({ message: 'bad mandatory' });
   }
