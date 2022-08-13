@@ -13,9 +13,7 @@ const app = express();
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log('Connect to MongoDB successfully!'))
-  .catch(() =>
-    console.log('Connection to MongoDB failed!', process.env.MONGODB_URI)
-  );
+  .catch(() => console.log('Connection to MongoDB failed!'));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
