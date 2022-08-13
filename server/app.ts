@@ -11,11 +11,11 @@ dotenv.config();
 const app = express();
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.USER_ID}:${process.env.USER_PASSWORD}@cluster0.tiv8a2x.mongodb.net/?retryWrites=true&w=majority`
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log('Connect to MongoDB successfully!'))
-  .catch(() => console.log('Connection to MongoDB failed!'));
+  .catch(() =>
+    console.log('Connection to MongoDB failed!', process.env.MONGODB_URI)
+  );
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -34,5 +34,6 @@ app.use(express.json());
 app.use('/api/user', userRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/message', messageRoutes);
+app.use('/ping', (req, res) => res.send('hello'));
 
 export default app;
