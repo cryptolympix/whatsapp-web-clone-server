@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.model';
 
 export function loginUser(req, res) {
-  if (req.body.password) {
-    User.findOne({ _id: req.params.id })
+  if (req.body.password && req.body.username && req.body.phone) {
+    User.findOne({ username: req.body.username, phone: req.body.phone })
       .then((user) => {
         if (!user) {
           return res.status(404).json({ error: `User not found` });

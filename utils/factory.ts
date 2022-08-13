@@ -16,10 +16,10 @@ export function mongoObjectId() {
 export const dummyUsers: User[] = [
   {
     _id: mongoObjectId(),
-    username: 'Ethan Gonzalez',
+    username: 'Ethan',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+222222222',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
@@ -27,10 +27,10 @@ export const dummyUsers: User[] = [
   },
   {
     _id: mongoObjectId(),
-    username: 'Bryan Wallace',
+    username: 'Bryan',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+333333333',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/lego/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
@@ -38,10 +38,10 @@ export const dummyUsers: User[] = [
   },
   {
     _id: mongoObjectId(),
-    username: 'Avery Stewart',
+    username: 'Avery',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+444444444',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
@@ -49,10 +49,10 @@ export const dummyUsers: User[] = [
   },
   {
     _id: mongoObjectId(),
-    username: 'Katie Peterson',
+    username: 'Katie',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+555555555',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
@@ -60,10 +60,10 @@ export const dummyUsers: User[] = [
   },
   {
     _id: mongoObjectId(),
-    username: 'Ray Edwards',
+    username: 'Ray',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+666666666',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/2.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
@@ -71,10 +71,10 @@ export const dummyUsers: User[] = [
   },
   {
     _id: mongoObjectId(),
-    username: 'Samy Smith',
+    username: 'Samy',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+777777777',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
@@ -82,10 +82,10 @@ export const dummyUsers: User[] = [
   },
   {
     _id: mongoObjectId(),
-    username: 'John Smith',
+    username: 'John',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+888888888',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/2.jpg',
       status: "Salut j'utilise whatsapp",
     },
@@ -93,10 +93,10 @@ export const dummyUsers: User[] = [
   },
   {
     _id: mongoObjectId(),
-    username: 'Adrianna Scott',
+    username: 'Adrianna',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+999999999',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
@@ -104,10 +104,10 @@ export const dummyUsers: User[] = [
   },
   {
     _id: mongoObjectId(),
-    username: 'Julienne Smith',
+    username: 'Julienne',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+999999999',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
@@ -118,7 +118,7 @@ export const dummyUsers: User[] = [
     username: 'Marco',
     password: bcrypt.hashSync('password', 10),
     profile: {
-      phone: '+101010101',
+      phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },

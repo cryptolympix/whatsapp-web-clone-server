@@ -9,7 +9,6 @@ import {
   dummyUsers,
   createDummyChatsData,
   createDummyMessagesData,
-  mongoObjectId,
 } from './factory';
 
 dotenv.config();
@@ -78,9 +77,7 @@ async function saveDummyUsers(users: User[]) {
 }
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.USER_ID}:${process.env.USER_PASSWORD}@cluster0.tiv8a2x.mongodb.net/?retryWrites=true&w=majority`
-  )
+  .connect(process.env.MONGODB_URI)
   .then(async () => {
     // Delete all the data
     Chat.deleteMany()
