@@ -1,9 +1,5 @@
 import http from 'http';
 import app from './app';
-import { Socket } from 'socket.io';
-import messageModel from './models/message.model';
-import userModel from './models/user.model';
-import chatModel from './models/chat.model';
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
@@ -51,17 +47,3 @@ server.on('listening', () => {
 });
 
 server.listen(port);
-
-sio.on('connection', (socket: Socket) => {
-  messageModel.watch().on('change', () => {
-    socket.emit('change');
-  });
-  userModel.watch().on('change', () => {
-    socket.emit('change');
-  });
-  chatModel.watch().on('change', () => {
-    socket.emit('change');
-  });
-
-  socket.on('disconnect', () => {});
-});
