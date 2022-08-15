@@ -58,7 +58,7 @@ export function updateUser(req, res) {
     req.body.profile &&
     req.body.online
   ) {
-    User.updateOne({ _id: req.params.id }, { ...req.body })
+    User.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
       .then(() =>
         res.status(200).json({ message: `User ${req.params.id} updated` })
       )
