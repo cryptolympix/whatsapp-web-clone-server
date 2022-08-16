@@ -39,7 +39,7 @@ export function updateChat(req, res) {
     req.body.title &&
     req.body.picture &&
     req.body.participants &&
-    req.body.archived
+    typeof req.body.archived == 'boolean'
   ) {
     Chat.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
       .then(() =>

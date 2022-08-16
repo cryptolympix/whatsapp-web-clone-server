@@ -56,7 +56,7 @@ export function updateUser(req, res) {
     req.body.username &&
     req.body.password &&
     req.body.profile &&
-    req.body.online
+    typeof req.body.online === 'boolean'
   ) {
     User.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
       .then(() =>
