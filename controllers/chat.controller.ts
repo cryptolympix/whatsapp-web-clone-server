@@ -14,7 +14,17 @@ export function createChat(req, res) {
     const chat = new Chat(chatObject);
     chat
       .save()
-      .then(() => res.status(201).json({ message: `Chat created` }))
+      .then((chat) =>
+        res.status(201).json({
+          chat: {
+            _id: chat._id,
+            title: chat.title,
+            picture: chat.picture,
+            participants: chat.participants,
+            archived: chat.archived,
+          },
+        })
+      )
       .catch((error) => res.status(400).json({ error }));
   } else {
     res.status(400).json({ message: 'bad mandatory' });
@@ -61,7 +71,7 @@ export function getChat(req, res) {
   }
 }
 
-export function getChatsForUser(req, res) {
+export function getChatsOfUser(req, res) {
   if (req.params.userId) {
     Chat.find({
       participants: {

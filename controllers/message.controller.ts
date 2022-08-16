@@ -1,6 +1,6 @@
 import Message from '../models/message.model';
 
-export function insertMessage(req, res) {
+export function createMessage(req, res) {
   if (req.body.chatId && req.body.content && req.body.type && req.body.read) {
     const message = new Message({
       ...req.body,
@@ -28,7 +28,7 @@ export function deleteMessage(req, res) {
   }
 }
 
-export function deleteMessagesForChat(req, res) {
+export function deleteMessagesOnChat(req, res) {
   if (req.params.chatId) {
     Message.deleteMany({ chatId: req.params.chatId })
       .then(() =>
@@ -67,7 +67,7 @@ export function updateMessage(req, res) {
   }
 }
 
-export function getMessagesForChat(req, res) {
+export function getMessagesOnChat(req, res) {
   if (req.params.chatId) {
     Message.find({ chatId: req.params.chatId })
       .then((messages) => {
@@ -89,4 +89,18 @@ export function getAllMessages(req, res) {
     .catch((error) => {
       res.status(404).json({ error });
     });
+}
+
+export function getMessage(req, res) {
+  if (req.params.id) {
+    Message.findOne({ _id: req.params.id })
+      .then((message) => {
+        res.status(200).json(message);
+      })
+      .catch((error) => {
+        res.status(404).json({ error });
+      });
+  } else {
+    res.status(400).json({ message: 'bad mandatory' });
+  }
 }
