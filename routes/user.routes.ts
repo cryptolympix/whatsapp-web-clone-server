@@ -9,6 +9,12 @@ router.get('/', auth, userCtrl.getAllUsers);
 router.get('/:id', auth, userCtrl.getUser);
 router.post('/login', userCtrl.loginUser);
 router.post('/logout/:id', auth, userCtrl.logoutUser);
-router.post('/update/:id', auth, multer, userCtrl.updateUser);
+router.post('/update/:id', auth, userCtrl.updateUser);
+router.put(
+  '/updateProfilePicture/:id',
+  auth,
+  multer,
+  userCtrl.updateProfilePicture
+);
 
 export default router;

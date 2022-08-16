@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'path';
 
 import userRoutes from './routes/user.routes';
 import chatRoutes from './routes/chat.routes';
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use('/images', express.static(path.join(process.cwd(), 'images')));
 app.use('/api/user', userRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/message', messageRoutes);

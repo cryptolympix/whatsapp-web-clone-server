@@ -68,6 +68,41 @@ export function updateUser(req, res) {
   }
 }
 
+export function updateProfilePicture(req, res) {
+  if (req.params.id && req.file) {
+    User.findOne({ _id: req.params.id })
+      .then((user) => {
+        User.updateOne(
+          { _id: req.params.id },
+          {
+            username: user.username,
+            online: user.online,
+            password: user.password,
+            profile: {
+              status: user.profile.status,
+              phone: user.profile.phone,
+              picture: `${req.protocol}://${req.get('host')}/images/${
+                req.file.filename
+              }`,
+            },
+            _id: req.params.id,
+          }
+        )
+          .then(() =>
+            res.status(200).json({
+              pictureUrl: `${req.protocol}://${req.get('host')}/images/${
+                req.file.filename
+              }`,
+            })
+          )
+          .catch((error) => res.status(400).json({ error }));
+      })
+      .catch((error) => res.status(404).json({ error }));
+  } else {
+    res.status(400).json({ message: 'bad mandatory' });
+  }
+}
+
 export function getUser(req, res) {
   if (req.params.id) {
     User.findById(req.params.id)
