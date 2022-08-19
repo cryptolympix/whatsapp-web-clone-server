@@ -13,116 +13,131 @@ export function mongoObjectId() {
   );
 }
 
+const PASSWORD = 'password';
+const ID = Array(10)
+  .fill(null)
+  .map(() => mongoObjectId());
+
 export const dummyUsers: User[] = [
   {
-    _id: mongoObjectId(),
+    _id: ID[0],
     username: 'Ethan',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[0]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[1],
     username: 'Bryan',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/lego/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[1]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[2],
     username: 'Avery',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[2]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[3],
     username: 'Katie',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[3]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[4],
     username: 'Ray',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/2.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[4]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[5],
     username: 'Samy',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[5]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[6],
     username: 'John',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/2.jpg',
       status: "Salut j'utilise whatsapp",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[6]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[7],
     username: 'Adrianna',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/women/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[7]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[8],
     username: 'Julienne',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/women/2.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[8]),
   },
   {
-    _id: mongoObjectId(),
+    _id: ID[9],
     username: 'Marco',
-    password: bcrypt.hashSync('password', 10),
+    password: bcrypt.hashSync(PASSWORD, 10),
     profile: {
       phone: '+111111111',
       picture: 'https://randomuser.me/api/portraits/thumb/men/1.jpg',
       status: "Salut j'utilise WhatsApp !",
     },
     online: false,
+    contacts: ID.filter((id) => id !== ID[9]),
   },
 ];
 

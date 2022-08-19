@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     },
     required: true,
   },
+  contacts: { type: [String], required: true },
   online: { type: Boolean, required: true },
 });
 

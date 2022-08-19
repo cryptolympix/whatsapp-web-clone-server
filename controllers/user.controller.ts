@@ -56,7 +56,8 @@ export function updateUser(req, res) {
     req.body.username &&
     req.body.password &&
     req.body.profile &&
-    typeof req.body.online === 'boolean'
+    typeof req.body.online === 'boolean' &&
+    req.body.contacts
   ) {
     User.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
       .then(() =>
@@ -85,6 +86,7 @@ export function updateProfilePicture(req, res) {
                 req.file.filename
               }`,
             },
+            contacts: user.contacts,
             _id: req.params.id,
           }
         )

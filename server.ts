@@ -1,5 +1,15 @@
 import http from 'http';
+import fs from 'fs';
+import path from 'path';
 import app from './app';
+
+const appDirectory = fs.realpathSync(process.cwd());
+const imagesFolder = path.resolve(appDirectory, 'images');
+
+// create images folder for multer
+if (!fs.existsSync(imagesFolder)) {
+  fs.mkdirSync(imagesFolder);
+}
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
