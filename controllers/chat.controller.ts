@@ -1,16 +1,8 @@
 import Chat from '../models/chat.model';
 
 export function createChat(req, res) {
-  if (req.body.title && req.body.picture && req.body.participants) {
-    const chatObject = req.file
-      ? {
-          ...JSON.parse(req.body),
-          picture: `${req.protocol}://${req.get('host')}/images/${
-            req.file.filename
-          }`,
-          archived: false,
-        }
-      : { ...req.body, archived: false };
+  if (req.body.participants) {
+    const chatObject = { ...req.body, archived: false };
     const chat = new Chat(chatObject);
     chat
       .save()
@@ -25,7 +17,9 @@ export function createChat(req, res) {
           },
         })
       )
-      .catch((error) => res.status(400).json({ error }));
+      .catch((error) => {
+        res.status(400).json({ error });
+      });
   } else {
     res.status(400).json({ message: 'bad mandatory' });
   }
@@ -46,8 +40,6 @@ export function deleteChat(req, res) {
 export function updateChat(req, res) {
   if (
     req.params.id &&
-    req.body.title &&
-    req.body.picture &&
     req.body.participants &&
     typeof req.body.archived == 'boolean'
   ) {

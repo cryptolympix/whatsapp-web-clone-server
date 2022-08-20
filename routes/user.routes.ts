@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/', auth, userCtrl.getAllUsers);
 router.get('/:id', auth, userCtrl.getUser);
+router.get('/contacts/:id', auth, userCtrl.getUserContacts);
 router.post('/login', userCtrl.loginUser);
 router.post('/logout/:id', auth, userCtrl.logoutUser);
 router.post('/update/:id', auth, userCtrl.updateUser);

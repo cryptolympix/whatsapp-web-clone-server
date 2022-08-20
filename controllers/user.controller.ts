@@ -115,6 +115,21 @@ export function getUser(req, res) {
   }
 }
 
+export function getUserContacts(req, res) {
+  if (req.params.id) {
+    User.findOne({ _id: req.params.id })
+      .then((user) => {
+        const contacts: string[] = user.contacts;
+        User.find({ _id: { $in: contacts } })
+          .then((users) => res.status(200).json({ users }))
+          .catch((error) => res.status(404).json({ error }));
+      })
+      .catch((error) => res.status(404).json({ error }));
+  } else {
+    res.status(400).json({ message: 'bad mandatory' });
+  }
+}
+
 export function getAllUsers(req, res) {
   User.find()
     .then((users) => res.status(200).json({ users }))

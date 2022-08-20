@@ -9,6 +9,9 @@ const imagesFolder = path.resolve(appDirectory, 'images');
 // create images folder for multer
 if (!fs.existsSync(imagesFolder)) {
   fs.mkdirSync(imagesFolder);
+} else {
+  fs.rmSync(imagesFolder, { recursive: true, force: true });
+  fs.mkdirSync(imagesFolder);
 }
 
 const normalizePort = (val) => {

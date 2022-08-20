@@ -144,22 +144,22 @@ export const dummyUsers: User[] = [
 export const createDummyChatsData = (users: User[]): Chat[] => [
   {
     _id: mongoObjectId(),
-    picture: users[1].profile.picture,
-    title: 'Chat 0',
+    picture: '',
+    title: '',
     participants: [users[0]._id, users[1]._id],
     archived: false,
   },
   {
     _id: mongoObjectId(),
-    picture: users[2].profile.picture,
-    title: 'Chat 1',
+    picture: '',
+    title: '',
     participants: [users[2]._id, users[0]._id],
     archived: false,
   },
   {
     _id: mongoObjectId(),
-    picture: users[2].profile.picture,
-    title: 'Chat 2',
+    picture: '',
+    title: '',
     participants: [users[1]._id, users[2]._id],
     archived: false,
   },
