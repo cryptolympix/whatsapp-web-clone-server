@@ -21,14 +21,16 @@ interface Chat {
   archived: boolean;
 }
 
+interface MessageContent {
+  text?: string;
+  pictureUrl?: string;
+  audioUrl?: string;
+}
+
 interface Message {
   _id: string;
   chatId: string;
-  content: {
-    text?: string;
-    pictureUrl?: string;
-    audioUrl?: string;
-  };
+  content: MessageContent;
   createdAt: Date;
   type: 'TEXT' | 'IMAGE';
   senderId: string;
