@@ -1,8 +1,9 @@
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
-import app from './app';
 import { Socket } from 'socket.io';
+
+import app from './app';
 
 const appDirectory = fs.realpathSync(process.cwd());
 const imagesFolder = path.resolve(appDirectory, 'images');
