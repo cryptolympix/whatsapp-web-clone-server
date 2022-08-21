@@ -2,6 +2,7 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 import app from './app';
+import { Socket } from 'socket.io';
 
 const appDirectory = fs.realpathSync(process.cwd());
 const imagesFolder = path.resolve(appDirectory, 'images');
@@ -39,23 +40,77 @@ const errorHandler = (error) => {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges.');
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use.');
       process.exit(1);
-      break;
     default:
       throw error;
   }
 };
 
 const server = http.createServer(app);
+const sio: Socket = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE'],
+    credentials: true,
+  },
+});
 
 server.on('error', errorHandler);
 server.on('listening', () => {
   const address = server.address();
   const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
   console.log('Listening on ' + bind);
+});
+
+sio.on('connection', (socket: Socket) => {
+  console.log(`New connection socket : ${socket.id}`);
+
+  socket.on('sendMessage', (message: Message) => {
+    socket.broadcast.emit('sendMessageResponse', message);
+  });
+
+  socket.on('deleteMessage', (messageId: string) => {
+    socket.broadcast.emit('deleteMessageResponse', messageId);
+  });
+
+  socket.on('deleteMessagesOnChat', (chatId: string) => {
+    socket.broadcast.emit('deleteMessagesOnChatResponse', chatId);
+  });
+
+  socket.on('updateMessage', (message: Message) => {
+    socket.broadcast.emit('updateMessageResponse', message);
+  });
+
+  socket.on('createChat', (chat: Chat) => {
+    socket.broadcast.emit('createChatResponse', chat);
+  });
+
+  socket.on('deleteChat', (chatId: string) => {
+    socket.broadcast.emit('deleteChatResponse', chatId);
+  });
+
+  socket.on('updateChat', (chat: Chat) => {
+    socket.broadcast.emit('updateChatResponse', chat);
+  });
+
+  socket.on('loginUser', (userId: string) => {
+    socket.broadcast.emit('loginUserResponse', userId);
+  });
+
+  socket.on('logoutUser', (userId: string) => {
+    socket.broadcast.emit('logoutUserResponse', userId);
+  });
+
+  socket.on('updateUser', (user: User) => {
+    socket.broadcast.emit('updateUserResponse', user);
+  });
+
+  socket.on('disconnect', () => {
+    console.log(`Connection close on socket : ${socket.id}`);
+    socket.disconnect();
+  });
 });
 
 server.listen(port);
