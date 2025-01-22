@@ -8,7 +8,6 @@
     "reset": "node ./build/utils/createDummyData.js"
   },
   "keywords": [],
-  "author": "Maxime Joly <maxime.joly2808@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
